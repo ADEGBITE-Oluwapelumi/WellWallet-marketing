@@ -1385,21 +1385,28 @@
     let html = '';
     
     teamMembers.forEach(member => {
-        html += `<label class="team-checkbox" id="checkbox-${member.toLowerCase().replace(/\s+/g, '')}" onclick="toggleTeamMember(this, '${member}')">
-            <input type="checkbox" name="taskOwners" value="${member}" style="display:none;">
+        const memberId = member.toLowerCase().replace(/\s+/g, '-');
+        html += `<div class="team-checkbox" id="checkbox-${memberId}" data-member="${member}">
+            <input type="checkbox" name="taskOwners" value="${member}">
             <span>${member}</span>
-        </label>`;
+        </div>`;
     });
     
     container.innerHTML = html;
-}
-
-function toggleTeamMember(element, memberName) {
-    element.classList.toggle('selected');
-    const checkbox = element.querySelector('input[type="checkbox"]');
-    if (checkbox) {
-        checkbox.checked = !checkbox.checked;
-    }
+    
+    // Add click event listeners after rendering
+    container.querySelectorAll('.team-checkbox').forEach(el => {
+        el.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            this.classList.toggle('selected');
+            const checkbox = this.querySelector('input[type="checkbox"]');
+            if (checkbox) {
+                checkbox.checked = this.classList.contains('selected');
+            }
+        });
+    });
 }
 
         function manageTeam() {
@@ -1906,64 +1913,70 @@ function toggleTeamMember(element, memberName) {
         // TASK MODAL FUNCTIONS
         // ============================================
         function openTaskModal() {
-            editingTaskId = null;
-            document.getElementById('taskModalTitle').textContent = 'Add New Task';
-            document.getElementById('taskSubmitBtn').textContent = 'Save Task';
-            document.getElementById('taskForm').reset();
-            document.getElementById('taskId').value = '';
-            document.getElementById('taskRowIndex').value = '';
-            
-            // Reset team checkboxes
-            document.querySelectorAll('.team-checkbox').forEach(cb => cb.classList.remove('selected'));
-            document.querySelectorAll('input[name="taskOwners"]').forEach(cb => cb.checked = false);
-            
-            // Set default dates
-            const today = new Date();
-            document.getElementById('taskStartDate').value = today.toISOString().split('T')[0];
-            const nextWeek = new Date(today);
-            nextWeek.setDate(nextWeek.getDate() + 7);
-            document.getElementById('taskEndDate').value = nextWeek.toISOString().split('T')[0];
-            
-            document.getElementById('taskModal').classList.add('active');
-        }
-
-        function openEditTaskModal(rowIndex) {
-            const task = tasks.find(t => t.rowIndex === rowIndex);
-            if (!task) return;
-            
-            editingTaskId = task.id;
-            document.getElementById('taskModalTitle').textContent = 'Edit Task';
-            document.getElementById('taskSubmitBtn').textContent = 'Update Task';
-            
-            document.getElementById('taskId').value = task.id;
-            document.getElementById('taskRowIndex').value = task.rowIndex;
-            document.getElementById('taskName').value = task.task;
-            document.getElementById('taskChannel').value = task.channel;
-            document.getElementById('taskCampaign').value = task.campaign;
-            document.getElementById('taskPriority').value = task.priority || 'P2';
-            document.getElementById('taskStatus').value = task.status;
-            document.getElementById('taskStartDate').value = task.startDate;
-            document.getElementById('taskEndDate').value = task.endDate;
-            document.getElementById('taskMilestone').value = task.milestone || '';
-            document.getElementById('taskNotes').value = task.notes || '';
-            
-            // Set owner checkboxes
-            document.querySelectorAll('.team-checkbox').forEach(cb => cb.classList.remove('selected'));
-            document.querySelectorAll('input[name="taskOwners"]').forEach(cb => cb.checked = false);
-            
-            if (task.owner) {
-                const owners = task.owner.split(',').map(o => o.trim());
-                owners.forEach(owner => {
-                    const checkbox = document.querySelector(`input[name="taskOwners"][value="${owner}"]`);
-                    if (checkbox) {
-                        checkbox.checked = true;
-                        checkbox.closest('.team-checkbox').classList.add('selected');
-                    }
-                });
+    editingTaskId = null;
+    document.getElementById('taskModalTitle').textContent = 'Add New Task';
+    document.getElementById('taskSubmitBtn').textContent = 'Save Task';
+    document.getElementById('taskForm').reset();
+    document.getElementById('taskId').value = '';
+    document.getElementById('taskRowIndex').value = '';
+    
+    // Clear all team member selections
+    document.querySelectorAll('#teamCheckboxes .team-checkbox').forEach(el => {
+        el.classList.remove('selected');
+        const checkbox = el.querySelector('input[type="checkbox"]');
+        if (checkbox) checkbox.checked = false;
+    });
+    
+    // Set default dates
+    const today = new Date();
+    document.getElementById('taskStartDate').value = today.toISOString().split('T')[0];
+    const nextWeek = new Date(today);
+    nextWeek.setDate(nextWeek.getDate() + 7);
+    document.getElementById('taskEndDate').value = nextWeek.toISOString().split('T')[0];
+    
+    document.getElementById('taskModal').classList.add('active');
+}
+    
+    editingTaskId = task.id;
+    document.getElementById('taskModalTitle').textContent = 'Edit Task';
+    document.getElementById('taskSubmitBtn').textContent = 'Update Task';
+    
+    document.getElementById('taskId').value = task.id;
+    document.getElementById('taskRowIndex').value = task.rowIndex;
+    document.getElementById('taskName').value = task.task || '';
+    document.getElementById('taskChannel').value = task.channel || '';
+    document.getElementById('taskCampaign').value = task.campaign || '';
+    document.getElementById('taskPriority').value = task.priority || 'P2';
+    document.getElementById('taskStatus').value = task.status || 'Not started';
+    document.getElementById('taskStartDate').value = task.startDate || '';
+    document.getElementById('taskEndDate').value = task.endDate || '';
+    document.getElementById('taskMilestone').value = task.milestone || '';
+    document.getElementById('taskNotes').value = task.notes || '';
+    
+    // Clear all selections first
+    document.querySelectorAll('#teamCheckboxes .team-checkbox').forEach(el => {
+        el.classList.remove('selected');
+        const checkbox = el.querySelector('input[type="checkbox"]');
+        if (checkbox) checkbox.checked = false;
+    });
+    
+    // Set owner checkboxes based on task owners
+    if (task.owner) {
+        const owners = task.owner.split(',').map(o => o.trim().toLowerCase());
+        document.querySelectorAll('#teamCheckboxes .team-checkbox').forEach(el => {
+            const checkbox = el.querySelector('input[type="checkbox"]');
+            if (checkbox) {
+                const memberName = checkbox.value.toLowerCase();
+                if (owners.some(owner => owner.includes(memberName) || memberName.includes(owner))) {
+                    el.classList.add('selected');
+                    checkbox.checked = true;
+                }
             }
-            
-            document.getElementById('taskModal').classList.add('active');
-        }
+        });
+    }
+    
+    document.getElementById('taskModal').classList.add('active');
+}
 
         function closeTaskModal() {
             document.getElementById('taskModal').classList.remove('active');
@@ -1971,59 +1984,65 @@ function toggleTeamMember(element, memberName) {
         }
 
         async function saveTask(event) {
-            event.preventDefault();
-            
-            // Get selected team members
-            const selectedOwners = [];
-            document.querySelectorAll('input[name="taskOwners"]:checked').forEach(cb => {
-                selectedOwners.push(cb.value);
-            });
-            
-            const taskData = {
-                channel: document.getElementById('taskChannel').value,
-                campaign: document.getElementById('taskCampaign').value,
-                task: document.getElementById('taskName').value,
-                priority: document.getElementById('taskPriority').value,
-                owner: selectedOwners.join(', '),
-                status: document.getElementById('taskStatus').value,
-                startDate: document.getElementById('taskStartDate').value,
-                endDate: document.getElementById('taskEndDate').value,
-                milestone: document.getElementById('taskMilestone').value,
-                deliverable: '',
-                notes: document.getElementById('taskNotes').value
-            };
-            
-            const rowIndex = document.getElementById('taskRowIndex').value;
-            
-            closeTaskModal();
-            
-            if (editingTaskId) {
-                // Update existing task
-                showToast('Updating task...');
-                taskData.rowIndex = parseInt(rowIndex);
-                const success = await updateTaskInSheet(taskData);
-                if (success) {
-                    showToast('Task updated successfully!');
-                } else {
-                    showToast('Error updating task', true);
-                }
-            } else {
-                // Add new task
-                showToast('Adding task...');
-                const success = await addTaskToSheet(taskData);
-                if (success) {
-                    showToast('Task added successfully!');
-                } else {
-                    showToast('Error adding task', true);
-                }
-            }
-            
-            // Refresh data
-            await loadTasksFromSheet();
-            renderTasks();
-            renderMilestones();
-            updateStats();
+    event.preventDefault();
+    
+    // Get selected team members
+    const selectedOwners = [];
+    document.querySelectorAll('#teamCheckboxes .team-checkbox.selected').forEach(el => {
+        const checkbox = el.querySelector('input[type="checkbox"]');
+        if (checkbox) {
+            selectedOwners.push(checkbox.value);
         }
+    });
+    
+    const taskData = {
+        channel: document.getElementById('taskChannel').value,
+        campaign: document.getElementById('taskCampaign').value,
+        task: document.getElementById('taskName').value,
+        priority: document.getElementById('taskPriority').value,
+        owner: selectedOwners.join(', '),
+        status: document.getElementById('taskStatus').value,
+        startDate: document.getElementById('taskStartDate').value,
+        endDate: document.getElementById('taskEndDate').value,
+        milestone: document.getElementById('taskMilestone').value,
+        deliverable: '',
+        notes: document.getElementById('taskNotes').value
+    };
+    
+    const rowIndex = document.getElementById('taskRowIndex').value;
+    const isEditing = rowIndex && rowIndex !== '' && editingTaskId !== null;
+    
+    closeTaskModal();
+    
+    if (isEditing) {
+        // Update existing task
+        showToast('Updating task...');
+        taskData.rowIndex = parseInt(rowIndex);
+        const success = await updateTaskInSheet(taskData);
+        if (success) {
+            showToast('Task updated successfully!');
+        } else {
+            showToast('Error updating task', true);
+        }
+    } else {
+        // Add new task
+        showToast('Adding task...');
+        const success = await addTaskToSheet(taskData);
+        if (success) {
+            showToast('Task added successfully!');
+        } else {
+            showToast('Error adding task', true);
+        }
+    }
+    
+    // Refresh data from sheet
+    setTimeout(async () => {
+        await loadTasksFromSheet();
+        renderTasks();
+        renderMilestones();
+        updateStats();
+    }, 1000);
+}
 
         // ============================================
         // DELETE FUNCTIONS
