@@ -1272,6 +1272,63 @@
     </div>
     
     <script>
+    // ==================== API CONFIG ====================
+const API_BASE = 'https://wellwallettasks-api-hwcahqdyd5dfgwg5.westeurope-01.azurewebsites.net/api';
+
+// ==================== API FUNCTIONS ====================
+async function loadTasks() {
+    try {
+        const response = await fetch(`${API_BASE}/getTasks`);
+        if (response.ok) {
+            const tasks = await response.json();
+            if (tasks.length > 0) {
+                allTasks = tasks;
+            }
+        }
+    } catch (error) {
+        console.log('Could not load tasks from API, using defaults');
+    }
+    renderGantt();
+    renderMilestones();
+}
+
+async function saveTaskToAPI(task) {
+    try {
+        const response = await fetch(`${API_BASE}/addTask`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(task)
+        });
+        return await response.json();
+    } catch (error) {
+        console.error('Error saving task:', error);
+        return null;
+    }
+}
+
+async function updateTaskInAPI(task) {
+    try {
+        const response = await fetch(`${API_BASE}/updateTask/${task.id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(task)
+        });
+        return await response.json();
+    } catch (error) {
+        console.error('Error updating task:', error);
+        return null;
+    }
+}
+
+async function deleteTaskFromAPI(taskId) {
+    try {
+        await fetch(`${API_BASE}/deleteTask/${taskId}`, {
+            method: 'DELETE'
+        });
+    } catch (error) {
+        console.error('Error deleting task:', error);
+    }
+}
         // ==================== DATE HELPERS ====================
         const today = new Date();
         today.setHours(0, 0, 0, 0);
@@ -1675,47 +1732,62 @@
             editingTaskId = null;
         }
         
-        function saveTask() {
-            const name = document.getElementById('taskName').value.trim();
-            if (!name) { alert('Please enter a task name'); return; }
-            
-            const taskData = {
-                name,
-                channel: document.getElementById('taskChannel').value,
-                campaign: document.getElementById('taskCampaign').value,
-                owner: document.getElementById('taskOwner').value,
-                start: document.getElementById('taskStart').value,
-                end: document.getElementById('taskEnd').value,
-                priority: document.getElementById('taskPriority').value,
-                progress: parseInt(document.getElementById('taskProgress').value),
-                status: document.getElementById('taskStatus').value
-            };
-            
-            if (taskData.progress === 100) taskData.status = 'completed';
-            else if (taskData.progress > 0) taskData.status = 'in-progress';
-            
-            if (editingTaskId) {
-                const idx = allTasks.findIndex(t => t.id === editingTaskId);
-                if (idx !== -1) allTasks[idx] = { ...allTasks[idx], ...taskData };
-            } else {
-                allTasks.push({ id: `task-${Date.now()}`, ...taskData });
-            }
+        async function saveTask() {
+    const name = document.getElementById('taskName').value.trim();
+    if (!name) { alert('Please enter a task name'); return; }
+    
+    const taskData = {
+        name,
+        channel: document.getElementById('taskChannel').value,
+        campaign: document.getElementById('taskCampaign').value,
+        owner: document.getElementById('taskOwner').value,
+        start: document.getElementById('taskStart').value,
+        end: document.getElementById('taskEnd').value,
+        priority: document.getElementById('taskPriority').value,
+        progress: parseInt(document.getElementById('taskProgress').value),
+        status: document.getElementById('taskStatus').value
+    };
+    
+    if (taskData.progress === 100) taskData.status = 'completed';
+    else if (taskData.progress > 0) taskData.status = 'in-progress';
+    
+    if (editingTaskId) {
+        const idx = allTasks.findIndex(t => t.id === editingTaskId);
+        if (idx !== -1) {
+            allTasks[idx] = { ...allTasks[idx], ...taskData };
+            await updateTaskInAPI(allTasks[idx]);
+        }
+    } else {
+        const newTask = { id: `task-${Date.now()}`, ...taskData };
+        const savedTask = await saveTaskToAPI(newTask);
+        if (savedTask) {
+            allTasks.push(savedTask);
+        } else {
+            allTasks.push(newTask);
+        }
+    }
+    
+    renderGantt();
+    renderMilestones();
+    closeTaskModal();
+}
             
             renderGantt();
             renderMilestones();
             closeTaskModal();
         }
         
-        function deleteTask() {
-            if (!editingTaskId) return;
-            if (confirm('Delete this task?')) {
-                allTasks = allTasks.filter(t => t.id !== editingTaskId);
-                milestones.forEach(m => m.taskIds = m.taskIds.filter(id => id !== editingTaskId));
-                renderGantt();
-                renderMilestones();
-                closeTaskModal();
-            }
-        }
+        async function deleteTask() {
+    if (!editingTaskId) return;
+    if (confirm('Delete this task?')) {
+        await deleteTaskFromAPI(editingTaskId);
+        allTasks = allTasks.filter(t => t.id !== editingTaskId);
+        milestones.forEach(m => m.taskIds = m.taskIds.filter(id => id !== editingTaskId));
+        renderGantt();
+        renderMilestones();
+        closeTaskModal();
+    }
+}
         
         // ==================== MILESTONE MODAL ====================
         function openMilestoneModal() {
@@ -1830,9 +1902,8 @@
             if (e.key === 'Escape') { closeTaskModal(); closeMilestoneModal(); closeTaskListModal(); }
         });
         
-        // Initial render
-        renderGantt();
-        renderMilestones();
+        // Initial render - Load from API
+loadTasks();
     </script>
 </body>
 </html>
