@@ -1719,18 +1719,28 @@
         }
 
         async function confirmDelete() {
-            if (!deleteTaskRowIndex) return;
-            closeDeleteModal();
-            showToast('Deleting...');
-            await deleteTaskFromSheet(deleteTaskRowIndex);
-            showToast('Deleted!');
-            setTimeout(async () => {
-                await loadTasksFromSheet();
-                renderTasks();
-                renderMilestones();
-                updateStats();
-            }, 1000);
-        }
+    if (!deleteTaskRowIndex) return;
+    const rowToDelete = deleteTaskRowIndex;
+    closeDeleteModal();
+    showToast('Deleting...');
+    
+    const success = await deleteTaskFromSheet(rowToDelete);
+    
+    if (success) {
+        showToast('Deleted!');
+        // Wait a moment for Google Sheets to process, then reload
+        setTimeout(async () => {
+            await loadTasksFromSheet();
+            renderTasks();
+            renderMilestones();
+            updateStats();
+        }, 1500);
+    } else {
+        showToast('Delete failed', true);
+    }
+    
+    deleteTaskRowIndex = null;
+}
 
         // Milestone Modal
         function openMilestoneModal() {
