@@ -19,7 +19,6 @@
             color: #ffffff;
         }
 
-        /* Header */
         .header {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
@@ -119,11 +118,6 @@
             color: white;
         }
 
-        .btn-warning {
-            background: linear-gradient(135deg, #f39c12, #e67e22);
-            color: white;
-        }
-
         .btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
@@ -134,14 +128,12 @@
             font-size: 0.75rem;
         }
 
-        /* Main Content */
         .main-content {
             padding: 2rem;
             max-width: 1600px;
             margin: 0 auto;
         }
 
-        /* Stats Cards - Clickable */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -199,7 +191,6 @@
             font-size: 0.875rem;
         }
 
-        /* Timeline Controls */
         .timeline-controls {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 16px;
@@ -258,7 +249,6 @@
             background: #3498db;
         }
 
-        /* Filter Bar */
         .filter-bar {
             display: flex;
             gap: 1rem;
@@ -292,29 +282,16 @@
             font-size: 0.8rem;
             font-weight: 500;
             transition: all 0.3s ease;
-        }
-
-        .team-filter.all { background: #3498db; color: white; }
-        .team-filter.ruth { background: #9b59b6; color: white; }
-        .team-filter.dara { background: #1abc9c; color: white; }
-        .team-filter.founders { background: #34495e; color: white; }
-        .team-filter.sales { background: #27ae60; color: white; }
-        .team-filter.sarah { background: #e74c3c; color: white; }
-        .team-filter.samuel { background: #7f8c8d; color: white; }
-        .team-filter.lumi { background: #e91e63; color: white; }
-        .team-filter.cyril { background: #00bcd4; color: white; }
-        .team-filter.chisom { background: #ff5722; color: white; }
-        .team-filter.tochukwu { background: #795548; color: white; }
-        .team-filter.ijele { background: #607d8b; color: white; }
-
-        .team-filter:not(.active) {
-            opacity: 0.5;
+            opacity: 0.6;
         }
 
         .team-filter.active {
             opacity: 1;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
+
+        .team-filter.all { background: #3498db; color: white; }
+        .team-filter:not(.all) { background: rgba(255,255,255,0.2); color: white; }
 
         .channel-select {
             padding: 8px 12px;
@@ -331,7 +308,6 @@
             color: white;
         }
 
-        /* Gantt Chart */
         .gantt-container {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 16px;
@@ -498,30 +474,6 @@
         .task-bar.completed { background: linear-gradient(135deg, #27ae60, #2ecc71); }
         .task-bar.blocked { background: linear-gradient(135deg, #e74c3c, #c0392b); }
 
-        /* Legend */
-        .legend {
-            display: flex;
-            gap: 1.5rem;
-            padding: 1rem;
-            flex-wrap: wrap;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.75rem;
-            color: #888;
-        }
-
-        .legend-color {
-            width: 12px;
-            height: 12px;
-            border-radius: 3px;
-        }
-
-        /* Milestones Section */
         .milestones-section {
             margin-top: 2rem;
             background: rgba(255, 255, 255, 0.05);
@@ -581,7 +533,6 @@
             color: #888;
         }
 
-        /* Modal Styles */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -701,7 +652,6 @@
             flex: 1;
         }
 
-        /* Multi-select for team members */
         .team-checkboxes {
             display: flex;
             flex-wrap: wrap;
@@ -713,32 +663,31 @@
         }
 
         .team-checkbox {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 14px;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.85rem;
-    user-select: none;
-}
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+            user-select: none;
+        }
 
-.team-checkbox:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
+        .team-checkbox:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
 
-.team-checkbox.selected {
-    background: #3498db;
-    box-shadow: 0 2px 10px rgba(52, 152, 219, 0.4);
-}
+        .team-checkbox.selected {
+            background: #3498db;
+            box-shadow: 0 2px 10px rgba(52, 152, 219, 0.4);
+        }
 
-.team-checkbox input {
-    display: none;
-}
+        .team-checkbox input {
+            display: none;
+        }
 
-        /* Task List in Modal */
         .task-list-container {
             max-height: 60vh;
             overflow-y: auto;
@@ -791,30 +740,6 @@
             gap: 8px;
         }
 
-        /* Team Management */
-        .team-management {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .add-team-member {
-            display: flex;
-            gap: 8px;
-            margin-top: 0.5rem;
-        }
-
-        .add-team-member input {
-            flex: 1;
-            padding: 8px 12px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.05);
-            color: white;
-            font-size: 0.875rem;
-        }
-
-        /* Floating Action Button */
         .fab {
             position: fixed;
             bottom: 2rem;
@@ -837,7 +762,6 @@
             box-shadow: 0 6px 30px rgba(52, 152, 219, 0.6);
         }
 
-        /* Loading State */
         .loading {
             text-align: center;
             padding: 3rem;
@@ -858,7 +782,6 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Empty State */
         .empty-state {
             text-align: center;
             padding: 3rem;
@@ -870,7 +793,6 @@
             margin-bottom: 1rem;
         }
 
-        /* Toast Notification */
         .toast {
             position: fixed;
             bottom: 2rem;
@@ -895,17 +817,6 @@
             background: #e74c3c;
         }
 
-        /* Confirmation Modal */
-        .confirm-modal {
-            text-align: center;
-        }
-
-        .confirm-modal p {
-            margin-bottom: 1.5rem;
-            color: #ccc;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
             .header {
                 flex-direction: column;
@@ -933,7 +844,6 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="logo">
             <div class="logo-icon">W</div>
@@ -947,24 +857,14 @@
                 <div class="sync-dot"></div>
                 <span id="lastSync">Syncing...</span>
             </div>
-            <button class="btn btn-secondary" onclick="manageTeam()">
-                👥 Team
-            </button>
-            <button class="btn btn-secondary" onclick="exportTasks()">
-                📊 Export
-            </button>
-            <button class="btn btn-success" onclick="openMilestoneModal()">
-                🎯 Milestone
-            </button>
-            <button class="btn btn-primary" onclick="openTaskModal()">
-                + Add Task
-            </button>
+            <button class="btn btn-secondary" onclick="manageTeam()">👥 Team</button>
+            <button class="btn btn-secondary" onclick="exportTasks()">📊 Export</button>
+            <button class="btn btn-success" onclick="openMilestoneModal()">🎯 Milestone</button>
+            <button class="btn btn-primary" onclick="openTaskModal()">+ Add Task</button>
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="main-content">
-        <!-- Stats Grid - Clickable -->
         <div class="stats-grid">
             <div class="stat-card" onclick="showTasksByStatus('all')" id="statTotal">
                 <div class="stat-icon total">📋</div>
@@ -998,7 +898,6 @@
             </div>
         </div>
 
-        <!-- Timeline Controls -->
         <div class="timeline-controls">
             <div class="timeline-nav">
                 <button onclick="navigateTimeline('start')" title="Go to start">⏮</button>
@@ -1016,13 +915,10 @@
             </div>
         </div>
 
-        <!-- Filter Bar -->
         <div class="filter-bar">
             <div class="filter-group">
                 <label>Team:</label>
-                <div class="team-filters" id="teamFilters">
-                    <!-- Team filters will be generated dynamically -->
-                </div>
+                <div class="team-filters" id="teamFilters"></div>
             </div>
             <div class="filter-group">
                 <label>Channel:</label>
@@ -1036,18 +932,10 @@
             </div>
         </div>
 
-        <!-- Legend -->
-        <div class="legend" style="background: rgba(255,255,255,0.05); border-radius: 12px; margin-bottom: 1rem;" id="legendContainer">
-            <!-- Legend will be generated dynamically -->
-        </div>
-
-        <!-- Gantt Chart -->
         <div class="gantt-container">
             <div class="gantt-header">
                 <div class="gantt-header-task">Task Name</div>
-                <div class="gantt-header-timeline" id="timelineHeader">
-                    <!-- Timeline headers will be generated by JS -->
-                </div>
+                <div class="gantt-header-timeline" id="timelineHeader"></div>
             </div>
             <div class="gantt-body" id="ganttBody">
                 <div class="loading">
@@ -1057,24 +945,18 @@
             </div>
         </div>
 
-        <!-- Milestones Section -->
         <div class="milestones-section">
             <div class="section-header">
-                <div class="section-title">
-                    🎯 <span>Milestones</span>
-                </div>
+                <div class="section-title">🎯 <span>Milestones</span></div>
                 <button class="btn btn-success" onclick="openMilestoneModal()">+ New</button>
             </div>
-            <div class="milestone-list" id="milestoneList">
-                <!-- Milestones will be populated by JS -->
-            </div>
+            <div class="milestone-list" id="milestoneList"></div>
         </div>
     </main>
 
-    <!-- Floating Action Button -->
     <button class="fab" onclick="openTaskModal()">+</button>
 
-    <!-- Add/Edit Task Modal -->
+    <!-- Task Modal -->
     <div class="modal-overlay" id="taskModal">
         <div class="modal">
             <div class="modal-header">
@@ -1131,10 +1013,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Assign To (select multiple team members)</label>
-                    <div class="team-checkboxes" id="teamCheckboxes">
-                        <!-- Team checkboxes will be generated dynamically -->
-                    </div>
+                    <label>Assign To (click to select multiple)</label>
+                    <div class="team-checkboxes" id="teamCheckboxes"></div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
@@ -1169,13 +1049,11 @@
                 <h2 id="taskListTitle">Tasks</h2>
                 <button class="modal-close" onclick="closeTaskListModal()">×</button>
             </div>
-            <div class="task-list-container" id="taskListContent">
-                <!-- Task list will be populated here -->
-            </div>
+            <div class="task-list-container" id="taskListContent"></div>
         </div>
     </div>
 
-    <!-- Team Management Modal -->
+    <!-- Team Modal -->
     <div class="modal-overlay" id="teamModal">
         <div class="modal">
             <div class="modal-header">
@@ -1183,19 +1061,17 @@
                 <button class="modal-close" onclick="closeTeamModal()">×</button>
             </div>
             <div class="form-group">
-                <label>Current Team Members</label>
-                <div class="team-checkboxes" id="currentTeamList">
-                    <!-- Team members will be listed here -->
+                <label>Current Team Members (click to remove)</label>
+                <div class="team-checkboxes" id="currentTeamList"></div>
+            </div>
+            <div class="form-group">
+                <label>Add New Team Member</label>
+                <div style="display: flex; gap: 8px;">
+                    <input type="text" id="newTeamMemberName" placeholder="Enter name" style="flex:1;">
+                    <button class="btn btn-success" onclick="addTeamMember()">Add</button>
                 </div>
             </div>
-            <div class="team-management">
-                <label style="font-size: 0.875rem; color: #888;">Add New Team Member</label>
-                <div class="add-team-member">
-                    <input type="text" id="newTeamMemberName" placeholder="Enter name">
-                    <button class="btn btn-success btn-sm" onclick="addTeamMember()">Add</button>
-                </div>
-            </div>
-            <div class="modal-actions" style="margin-top: 2rem;">
+            <div class="modal-actions">
                 <button class="btn btn-secondary" onclick="closeTeamModal()">Close</button>
             </div>
         </div>
@@ -1238,36 +1114,29 @@
         </div>
     </div>
 
-    <!-- Delete Confirmation Modal -->
+    <!-- Delete Modal -->
     <div class="modal-overlay" id="deleteModal">
         <div class="modal" style="max-width: 400px;">
             <div class="modal-header">
                 <h2>Confirm Delete</h2>
                 <button class="modal-close" onclick="closeDeleteModal()">×</button>
             </div>
-            <div class="confirm-modal">
-                <p id="deleteMessage">Are you sure you want to delete this task?</p>
-                <div class="modal-actions">
-                    <button class="btn btn-secondary" onclick="closeDeleteModal()">Cancel</button>
-                    <button class="btn btn-danger" onclick="confirmDelete()">Delete</button>
-                </div>
+            <p style="margin-bottom: 1.5rem; color: #ccc;" id="deleteMessage">Are you sure you want to delete this task?</p>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeDeleteModal()">Cancel</button>
+                <button class="btn btn-danger" onclick="confirmDelete()">Delete</button>
             </div>
         </div>
     </div>
 
-    <!-- Toast Notification -->
-    <div class="toast" id="toast">Task saved successfully!</div>
+    <div class="toast" id="toast">Task saved!</div>
 
     <script>
-        // ============================================
-        // CONFIGURATION
-        // ============================================
+        // Configuration
         const GOOGLE_SHEETS_API = 'https://script.google.com/macros/s/AKfycbymceDaxWaQaYiyPAJSYHog3W1YJyjplcDRDb1sWAMg23AQYeGGs1djmkwBtKQMLMMZbw/exec';
-        const AUTO_REFRESH_INTERVAL = 30000; // 30 seconds
+        const AUTO_REFRESH_INTERVAL = 30000;
 
-        // ============================================
-        // STATE MANAGEMENT
-        // ============================================
+        // State
         let tasks = [];
         let milestones = [];
         let teamMembers = ['Ruth', 'Dara', 'Sarah', 'Samuel', 'Lumi', 'Tochukwu', 'Ijele', 'Cyril', 'Chisom', 'Founders', 'Sales'];
@@ -1276,29 +1145,32 @@
         let activeTeamFilter = 'all';
         let activeChannelFilter = 'all';
         let editingTaskId = null;
-        let deleteTaskId = null;
         let deleteTaskRowIndex = null;
         let autoRefreshTimer = null;
 
-        // ============================================
-        // INITIALIZATION
-        // ============================================
+        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('App starting...');
             loadTeamMembers();
             initializeApp();
-            startAutoRefresh();
         });
 
         async function initializeApp() {
-            setViewStartToToday();
-            await loadTasksFromSheet();
-            renderTeamFilters();
-            renderLegend();
-            renderTeamCheckboxes();
-            renderTimeline();
-            renderTasks();
-            renderMilestones();
-            updateStats();
+            try {
+                setViewStartToToday();
+                renderTeamFilters();
+                renderTeamCheckboxes();
+                renderTimeline();
+                await loadTasksFromSheet();
+                renderTasks();
+                renderMilestones();
+                updateStats();
+                startAutoRefresh();
+                console.log('App initialized!');
+            } catch (error) {
+                console.error('Init error:', error);
+                showToast('Error loading app', true);
+            }
         }
 
         function setViewStartToToday() {
@@ -1309,9 +1181,7 @@
             viewStartDate.setDate(diff);
         }
 
-        // ============================================
-        // AUTO REFRESH
-        // ============================================
+        // Auto Refresh
         function startAutoRefresh() {
             if (autoRefreshTimer) clearInterval(autoRefreshTimer);
             autoRefreshTimer = setInterval(async () => {
@@ -1319,24 +1189,18 @@
                 renderTasks();
                 renderMilestones();
                 updateStats();
-                updateLastSyncTime();
             }, AUTO_REFRESH_INTERVAL);
         }
 
         function updateLastSyncTime() {
             const now = new Date();
-            const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-            document.getElementById('lastSync').textContent = `Last sync: ${timeStr}`;
+            document.getElementById('lastSync').textContent = 'Synced: ' + now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
         }
 
-        // ============================================
-        // TEAM MANAGEMENT
-        // ============================================
+        // Team Management
         function loadTeamMembers() {
             const saved = localStorage.getItem('wellwallet_team');
-            if (saved) {
-                teamMembers = JSON.parse(saved);
-            }
+            if (saved) teamMembers = JSON.parse(saved);
         }
 
         function saveTeamMembers() {
@@ -1346,80 +1210,40 @@
         function renderTeamFilters() {
             const container = document.getElementById('teamFilters');
             let html = `<button class="team-filter all ${activeTeamFilter === 'all' ? 'active' : ''}" onclick="filterByTeam('all')">All</button>`;
-            
             teamMembers.forEach(member => {
-                const className = member.toLowerCase().replace(/\s+/g, '');
-                html += `<button class="team-filter ${className} ${activeTeamFilter === member.toLowerCase() ? 'active' : ''}" 
-                         onclick="filterByTeam('${member.toLowerCase()}')">${member}</button>`;
+                html += `<button class="team-filter ${activeTeamFilter === member.toLowerCase() ? 'active' : ''}" onclick="filterByTeam('${member.toLowerCase()}')">${member}</button>`;
             });
-            
-            container.innerHTML = html;
-        }
-
-        function renderLegend() {
-            const container = document.getElementById('legendContainer');
-            const colors = {
-                'Ruth': '#9b59b6', 'Dara': '#1abc9c', 'Sarah': '#e74c3c', 'Samuel': '#7f8c8d',
-                'Lumi': '#e91e63', 'Tochukwu': '#795548', 'Ijele': '#607d8b', 'Cyril': '#00bcd4',
-                'Chisom': '#ff5722', 'Founders': '#34495e', 'Sales': '#27ae60', 'Multiple': '#f39c12'
-            };
-            
-            let html = '';
-            teamMembers.forEach(member => {
-                const color = colors[member] || '#888';
-                html += `<div class="legend-item">
-                    <div class="legend-color" style="background: ${color};"></div>
-                    <span>${member}</span>
-                </div>`;
-            });
-            html += `<div class="legend-item">
-                <div class="legend-color" style="background: #f39c12;"></div>
-                <span>Multiple</span>
-            </div>`;
-            
             container.innerHTML = html;
         }
 
         function renderTeamCheckboxes() {
-    const container = document.getElementById('teamCheckboxes');
-    let html = '';
-    
-    teamMembers.forEach(member => {
-        const memberId = member.toLowerCase().replace(/\s+/g, '-');
-        html += `<div class="team-checkbox" id="checkbox-${memberId}" data-member="${member}">
-            <input type="checkbox" name="taskOwners" value="${member}">
-            <span>${member}</span>
-        </div>`;
-    });
-    
-    container.innerHTML = html;
-    
-    // Add click event listeners after rendering
-    container.querySelectorAll('.team-checkbox').forEach(el => {
-        el.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            this.classList.toggle('selected');
-            const checkbox = this.querySelector('input[type="checkbox"]');
-            if (checkbox) {
-                checkbox.checked = this.classList.contains('selected');
-            }
-        });
-    });
-}
+            const container = document.getElementById('teamCheckboxes');
+            if (!container) return;
+            let html = '';
+            teamMembers.forEach(member => {
+                html += `<div class="team-checkbox" data-member="${member}" onclick="toggleTeamCheckbox(this)">
+                    <input type="checkbox" name="taskOwners" value="${member}">
+                    <span>${member}</span>
+                </div>`;
+            });
+            container.innerHTML = html;
+        }
+
+        function toggleTeamCheckbox(el) {
+            el.classList.toggle('selected');
+            const cb = el.querySelector('input');
+            if (cb) cb.checked = el.classList.contains('selected');
+        }
 
         function manageTeam() {
             const container = document.getElementById('currentTeamList');
             let html = '';
-            
             teamMembers.forEach(member => {
-                html += `<div class="team-checkbox selected" style="justify-content: space-between;">
+                html += `<div class="team-checkbox selected" onclick="removeTeamMember('${member}')" style="cursor:pointer;">
                     <span>${member}</span>
-                    <button onclick="removeTeamMember('${member}')" style="background:none;border:none;color:#e74c3c;cursor:pointer;">✕</button>
+                    <span style="color:#e74c3c;margin-left:8px;">✕</span>
                 </div>`;
             });
-            
             container.innerHTML = html;
             document.getElementById('teamModal').classList.add('active');
         }
@@ -1431,49 +1255,36 @@
         function addTeamMember() {
             const input = document.getElementById('newTeamMemberName');
             const name = input.value.trim();
-            
             if (name && !teamMembers.includes(name)) {
                 teamMembers.push(name);
                 saveTeamMembers();
                 renderTeamFilters();
-                renderLegend();
                 renderTeamCheckboxes();
-                manageTeam(); // Refresh the modal
+                manageTeam();
                 input.value = '';
-                showToast(`${name} added to team!`);
-            } else if (teamMembers.includes(name)) {
-                showToast('Team member already exists!', true);
+                showToast(name + ' added!');
             }
         }
 
         function removeTeamMember(name) {
-            const index = teamMembers.indexOf(name);
-            if (index > -1) {
-                teamMembers.splice(index, 1);
-                saveTeamMembers();
-                renderTeamFilters();
-                renderLegend();
-                renderTeamCheckboxes();
-                manageTeam();
-                showToast(`${name} removed from team`);
-            }
+            teamMembers = teamMembers.filter(m => m !== name);
+            saveTeamMembers();
+            renderTeamFilters();
+            renderTeamCheckboxes();
+            manageTeam();
+            showToast(name + ' removed');
         }
 
-        // ============================================
-        // GOOGLE SHEETS API FUNCTIONS
-        // ============================================
+        // API Functions
         async function loadTasksFromSheet() {
             try {
+                console.log('Fetching tasks...');
                 const response = await fetch(GOOGLE_SHEETS_API);
-                if (!response.ok) throw new Error('Failed to fetch tasks');
-                
                 const data = await response.json();
                 
-                if (data.error) {
-                    throw new Error(data.error);
-                }
+                if (data.error) throw new Error(data.error);
                 
-                tasks = data.map((row) => ({
+                tasks = data.filter(t => t.task && t.task.trim() !== '').map(row => ({
                     id: row.id,
                     rowIndex: row.rowIndex,
                     channel: row.channel || '',
@@ -1481,29 +1292,25 @@
                     task: row.task || '',
                     priority: row.priority || 'P2',
                     owner: row.owner || '',
-                    status: normalizeStatus(row.status || 'Not started'),
+                    status: normalizeStatus(row.status),
                     startDate: row.startDate || '',
                     endDate: row.endDate || '',
                     milestone: row.milestone || '',
-                    deliverable: row.deliverable || '',
                     notes: row.notes || ''
-                })).filter(t => t.task && t.task.trim() !== '');
+                }));
 
-                // Extract milestones
-                milestones = tasks
-                    .filter(t => t.milestone && t.milestone.trim() !== '')
-                    .map(t => ({
-                        id: t.id,
-                        name: t.milestone,
-                        date: t.endDate,
-                        campaign: t.campaign
-                    }));
+                milestones = tasks.filter(t => t.milestone).map(t => ({
+                    id: t.id,
+                    name: t.milestone,
+                    date: t.endDate,
+                    campaign: t.campaign
+                }));
 
                 updateLastSyncTime();
-                console.log('Loaded tasks:', tasks.length);
+                console.log('Loaded ' + tasks.length + ' tasks');
             } catch (error) {
-                console.error('Error loading tasks:', error);
-                showToast('Error loading tasks. Please refresh.', true);
+                console.error('Load error:', error);
+                showToast('Error loading tasks', true);
             }
         }
 
@@ -1516,7 +1323,7 @@
                 const result = await response.json();
                 return result.success;
             } catch (error) {
-                console.error('Error adding task:', error);
+                console.error('Add error:', error);
                 return false;
             }
         }
@@ -1530,7 +1337,7 @@
                 const result = await response.json();
                 return result.success;
             } catch (error) {
-                console.error('Error updating task:', error);
+                console.error('Update error:', error);
                 return false;
             }
         }
@@ -1544,52 +1351,44 @@
                 const result = await response.json();
                 return result.success;
             } catch (error) {
-                console.error('Error deleting task:', error);
+                console.error('Delete error:', error);
                 return false;
             }
         }
 
         function normalizeStatus(status) {
-            const s = status.toLowerCase().trim();
+            if (!status) return 'Not started';
+            const s = status.toLowerCase();
             if (s.includes('progress')) return 'In progress';
             if (s.includes('complete')) return 'Completed';
             if (s.includes('block')) return 'Blocked';
             return 'Not started';
         }
 
-        // ============================================
-        // TIMELINE FUNCTIONS
-        // ============================================
+        // Timeline
         function getViewDays() {
-            switch (currentView) {
-                case '2weeks': return 14;
-                case 'month': return 30;
-                case '2months': return 60;
-                default: return 14;
-            }
+            if (currentView === 'month') return 30;
+            if (currentView === '2months') return 60;
+            return 14;
         }
 
         function renderTimeline() {
             const header = document.getElementById('timelineHeader');
             const days = getViewDays();
             let html = '';
+            const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
             for (let i = 0; i < days; i++) {
                 const date = new Date(viewStartDate);
                 date.setDate(date.getDate() + i);
-                
                 const isWeekend = date.getDay() === 0 || date.getDay() === 6;
                 const isToday = isSameDay(date, new Date());
-                const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
                 
-                html += `
-                    <div class="timeline-day ${isWeekend ? 'weekend' : ''} ${isToday ? 'today' : ''}">
-                        <div class="timeline-day-name">${dayNames[date.getDay()]}</div>
-                        <div>${date.getDate()}</div>
-                    </div>
-                `;
+                html += `<div class="timeline-day ${isWeekend ? 'weekend' : ''} ${isToday ? 'today' : ''}">
+                    <div class="timeline-day-name">${dayNames[date.getDay()]}</div>
+                    <div>${date.getDate()}</div>
+                </div>`;
             }
-
             header.innerHTML = html;
             updatePeriodLabel();
         }
@@ -1597,95 +1396,64 @@
         function updatePeriodLabel() {
             const endDate = new Date(viewStartDate);
             endDate.setDate(endDate.getDate() + getViewDays() - 1);
-            
-            const options = { month: 'short', day: 'numeric' };
-            const start = viewStartDate.toLocaleDateString('en-US', options);
-            const end = endDate.toLocaleDateString('en-US', options);
-            
-            document.getElementById('currentPeriod').textContent = `${start} - ${end}`;
+            const opts = { month: 'short', day: 'numeric' };
+            document.getElementById('currentPeriod').textContent = 
+                viewStartDate.toLocaleDateString('en-US', opts) + ' - ' + endDate.toLocaleDateString('en-US', opts);
         }
 
         function isSameDay(d1, d2) {
-            return d1.getFullYear() === d2.getFullYear() &&
-                   d1.getMonth() === d2.getMonth() &&
-                   d1.getDate() === d2.getDate();
+            return d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth() && d1.getDate() === d2.getDate();
         }
 
-        // ============================================
-        // RENDER FUNCTIONS
-        // ============================================
+        // Render
         function renderTasks() {
             const container = document.getElementById('ganttBody');
-            const filteredTasks = getFilteredTasks();
+            const filtered = getFilteredTasks();
 
-            if (filteredTasks.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <div class="empty-state-icon">📋</div>
-                        <p>No tasks found. Add your first task!</p>
-                    </div>
-                `;
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📋</div><p>No tasks found</p></div>';
                 return;
             }
 
             let html = '';
-            filteredTasks.forEach(task => {
-                const ownerColor = getOwnerColor(task.owner);
+            filtered.forEach(task => {
+                const color = getOwnerColor(task.owner);
                 const statusClass = getStatusClass(task.status);
-                const barStyle = calculateBarPosition(task.startDate, task.endDate);
+                const bar = calculateBarPosition(task.startDate, task.endDate);
 
-                html += `
-                    <div class="gantt-row">
-                        <div class="gantt-task-info" onclick="openEditTaskModal(${task.rowIndex})">
-                            <div class="task-color" style="background: ${ownerColor};"></div>
-                            <div class="task-details">
-                                <h4 title="${task.task}">${task.task}</h4>
-                                <div class="task-meta">${task.owner || 'Unassigned'} • ${task.priority || 'P2'}</div>
-                            </div>
-                            <div class="task-actions">
-                                <button class="task-action-btn edit" onclick="event.stopPropagation(); openEditTaskModal(${task.rowIndex})" title="Edit">✏️</button>
-                                <button class="task-action-btn delete" onclick="event.stopPropagation(); openDeleteModal(${task.id}, ${task.rowIndex})" title="Delete">🗑️</button>
-                            </div>
+                html += `<div class="gantt-row">
+                    <div class="gantt-task-info" onclick="openEditTaskModal(${task.rowIndex})">
+                        <div class="task-color" style="background:${color}"></div>
+                        <div class="task-details">
+                            <h4>${task.task}</h4>
+                            <div class="task-meta">${task.owner || 'Unassigned'} • ${task.priority}</div>
                         </div>
-                        <div class="gantt-task-timeline">
-                            ${barStyle.visible ? `
-                                <div class="task-bar ${statusClass}" 
-                                     style="left: ${barStyle.left}px; width: ${barStyle.width}px;"
-                                     onclick="cycleTaskStatus(${task.rowIndex})"
-                                     title="Click to change status: ${task.status}">
-                                    ${task.status}
-                                </div>
-                            ` : '<span style="color:#666;font-size:0.75rem;padding:0 10px;">No dates set</span>'}
+                        <div class="task-actions">
+                            <button class="task-action-btn edit" onclick="event.stopPropagation();openEditTaskModal(${task.rowIndex})">✏️</button>
+                            <button class="task-action-btn delete" onclick="event.stopPropagation();openDeleteModal(${task.rowIndex})">🗑️</button>
                         </div>
                     </div>
-                `;
+                    <div class="gantt-task-timeline">
+                        ${bar.visible ? `<div class="task-bar ${statusClass}" style="left:${bar.left}px;width:${bar.width}px" onclick="cycleStatus(${task.rowIndex})">${task.status}</div>` : '<span style="color:#666;font-size:0.7rem;padding:10px">No dates</span>'}
+                    </div>
+                </div>`;
             });
-
             container.innerHTML = html;
         }
 
         function renderMilestones() {
             const container = document.getElementById('milestoneList');
-            
             if (milestones.length === 0) {
-                container.innerHTML = '<p style="color: #888; text-align: center; padding: 1rem;">No milestones yet. Add one to track key dates!</p>';
+                container.innerHTML = '<p style="color:#888;text-align:center;padding:1rem">No milestones yet</p>';
                 return;
             }
-
             let html = '';
-            milestones.forEach(milestone => {
-                const dateStr = milestone.date ? formatDate(milestone.date) : 'No date';
-                html += `
-                    <div class="milestone-item">
-                        <div class="milestone-date">${dateStr}</div>
-                        <div class="milestone-info">
-                            <h4>${milestone.name}</h4>
-                            <span>${milestone.campaign || 'General'}</span>
-                        </div>
-                    </div>
-                `;
+            milestones.forEach(m => {
+                html += `<div class="milestone-item">
+                    <div class="milestone-date">${m.date ? formatDate(m.date) : 'No date'}</div>
+                    <div class="milestone-info"><h4>${m.name}</h4><span>${m.campaign || 'General'}</span></div>
+                </div>`;
             });
-
             container.innerHTML = html;
         }
 
@@ -1698,28 +1466,20 @@
             document.getElementById('totalMilestones').textContent = milestones.length;
         }
 
-        // ============================================
-        // HELPER FUNCTIONS
-        // ============================================
+        // Helpers
         function getFilteredTasks() {
-            return tasks.filter(task => {
-                const teamMatch = activeTeamFilter === 'all' || 
-                    task.owner.toLowerCase().includes(activeTeamFilter.toLowerCase());
-                const channelMatch = activeChannelFilter === 'all' || 
-                    task.channel === activeChannelFilter;
+            return tasks.filter(t => {
+                const teamMatch = activeTeamFilter === 'all' || t.owner.toLowerCase().includes(activeTeamFilter);
+                const channelMatch = activeChannelFilter === 'all' || t.channel === activeChannelFilter;
                 return teamMatch && channelMatch;
             });
         }
 
         function getOwnerColor(owner) {
             if (!owner) return '#888';
-            const colors = {
-                'ruth': '#9b59b6', 'dara': '#1abc9c', 'sarah': '#e74c3c', 'samuel': '#7f8c8d',
-                'lumi': '#e91e63', 'tochukwu': '#795548', 'ijele': '#607d8b', 'cyril': '#00bcd4',
-                'chisom': '#ff5722', 'founders': '#34495e', 'sales': '#27ae60'
-            };
+            const colors = { ruth: '#9b59b6', dara: '#1abc9c', sarah: '#e74c3c', samuel: '#7f8c8d', lumi: '#e91e63', tochukwu: '#795548', ijele: '#607d8b', cyril: '#00bcd4', chisom: '#ff5722', founders: '#34495e', sales: '#27ae60' };
             const o = owner.toLowerCase();
-            if (o.includes(',')) return '#f39c12'; // Multiple owners
+            if (o.includes(',')) return '#f39c12';
             for (const [name, color] of Object.entries(colors)) {
                 if (o.includes(name)) return color;
             }
@@ -1735,58 +1495,42 @@
         }
 
         function calculateBarPosition(startDate, endDate) {
-            if (!startDate || !endDate) {
-                return { visible: false, left: 0, width: 0 };
-            }
-
+            if (!startDate || !endDate) return { visible: false };
             const start = new Date(startDate);
             const end = new Date(endDate);
             const viewEnd = new Date(viewStartDate);
             viewEnd.setDate(viewEnd.getDate() + getViewDays());
-
-            if (end < viewStartDate || start > viewEnd) {
-                return { visible: false, left: 0, width: 0 };
-            }
-
+            if (end < viewStartDate || start > viewEnd) return { visible: false };
+            
             const dayWidth = 40;
             const effectiveStart = start < viewStartDate ? viewStartDate : start;
             const effectiveEnd = end > viewEnd ? viewEnd : end;
-
             const startOffset = Math.floor((effectiveStart - viewStartDate) / (1000 * 60 * 60 * 24));
             const duration = Math.ceil((effectiveEnd - effectiveStart) / (1000 * 60 * 60 * 24)) + 1;
-
-            return {
-                visible: true,
-                left: startOffset * dayWidth,
-                width: Math.max(duration * dayWidth - 4, 60)
-            };
+            
+            return { visible: true, left: startOffset * dayWidth, width: Math.max(duration * dayWidth - 4, 60) };
         }
 
         function formatDate(dateStr) {
             if (!dateStr) return '';
-            const date = new Date(dateStr);
-            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
         }
 
-        // ============================================
-        // USER INTERACTIONS
-        // ============================================
-        function navigateTimeline(direction) {
+        // Navigation
+        function navigateTimeline(dir) {
             const days = getViewDays();
-            switch (direction) {
-                case 'prev': viewStartDate.setDate(viewStartDate.getDate() - days); break;
-                case 'next': viewStartDate.setDate(viewStartDate.getDate() + days); break;
-                case 'today': setViewStartToToday(); break;
-                case 'start': viewStartDate = new Date('2025-02-01'); break;
-                case 'end': viewStartDate = new Date('2025-04-01'); break;
-            }
+            if (dir === 'prev') viewStartDate.setDate(viewStartDate.getDate() - days);
+            else if (dir === 'next') viewStartDate.setDate(viewStartDate.getDate() + days);
+            else if (dir === 'today') setViewStartToToday();
+            else if (dir === 'start') viewStartDate = new Date('2025-02-01');
+            else if (dir === 'end') viewStartDate = new Date('2025-04-01');
             renderTimeline();
             renderTasks();
         }
 
         function setView(view) {
             currentView = view;
-            document.querySelectorAll('.view-toggle button').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.view-toggle button').forEach(b => b.classList.remove('active'));
             event.target.classList.add('active');
             renderTimeline();
             renderTasks();
@@ -1794,8 +1538,7 @@
 
         function filterByTeam(team) {
             activeTeamFilter = team;
-            document.querySelectorAll('.team-filter').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            renderTeamFilters();
             renderTasks();
         }
 
@@ -1804,179 +1547,115 @@
             renderTasks();
         }
 
-        async function cycleTaskStatus(rowIndex) {
+        async function cycleStatus(rowIndex) {
             const task = tasks.find(t => t.rowIndex === rowIndex);
             if (!task) return;
-
             const statuses = ['Not started', 'In progress', 'Completed', 'Blocked'];
-            const currentIndex = statuses.indexOf(task.status);
-            const newStatus = statuses[(currentIndex + 1) % statuses.length];
-            
-            task.status = newStatus;
+            task.status = statuses[(statuses.indexOf(task.status) + 1) % 4];
             renderTasks();
             updateStats();
-            showToast(`Status changed to: ${newStatus}`);
-
-            await updateTaskInSheet({
-                rowIndex: rowIndex,
-                channel: task.channel,
-                campaign: task.campaign,
-                task: task.task,
-                priority: task.priority,
-                owner: task.owner,
-                status: newStatus,
-                startDate: task.startDate,
-                endDate: task.endDate,
-                milestone: task.milestone,
-                deliverable: task.deliverable,
-                notes: task.notes
-            });
+            await updateTaskInSheet({ rowIndex, ...task });
+            showToast('Status: ' + task.status);
         }
 
-        // ============================================
-        // SHOW TASKS BY STATUS (Dashboard Click)
-        // ============================================
+        // Task List Modal
         function showTasksByStatus(status) {
-            // Remove active class from all stat cards
-            document.querySelectorAll('.stat-card').forEach(card => card.classList.remove('active'));
-            
-            // Add active class to clicked card
-            if (status === 'all') document.getElementById('statTotal').classList.add('active');
-            else if (status === 'Not started') document.getElementById('statNotStarted').classList.add('active');
-            else if (status === 'In progress') document.getElementById('statInProgress').classList.add('active');
-            else if (status === 'Completed') document.getElementById('statCompleted').classList.add('active');
-            else if (status === 'Blocked') document.getElementById('statBlocked').classList.add('active');
-
-            const filteredTasks = status === 'all' ? tasks : tasks.filter(t => t.status === status);
-            
-            const title = status === 'all' ? 'All Tasks' : `${status} Tasks`;
-            document.getElementById('taskListTitle').textContent = `${title} (${filteredTasks.length})`;
+            const filtered = status === 'all' ? tasks : tasks.filter(t => t.status === status);
+            document.getElementById('taskListTitle').textContent = (status === 'all' ? 'All' : status) + ' Tasks (' + filtered.length + ')';
             
             let html = '';
-            if (filteredTasks.length === 0) {
-                html = '<p style="color: #888; text-align: center; padding: 2rem;">No tasks found</p>';
+            if (filtered.length === 0) {
+                html = '<p style="color:#888;text-align:center;padding:2rem">No tasks found</p>';
             } else {
-                filteredTasks.forEach(task => {
-                    const statusClass = getStatusClass(task.status);
-                    html += `
-                        <div class="task-list-item" style="border-left-color: ${getOwnerColor(task.owner)};">
-                            <div class="task-info">
-                                <h4>${task.task}</h4>
-                                <p>${task.owner || 'Unassigned'} • ${task.channel || 'No channel'} • ${task.priority || 'P2'}</p>
-                            </div>
-                            <span class="task-status ${statusClass}">${task.status}</span>
-                            <div class="task-list-actions">
-                                <button class="btn btn-sm btn-primary" onclick="openEditTaskModal(${task.rowIndex}); closeTaskListModal();">Edit</button>
-                                <button class="btn btn-sm btn-danger" onclick="openDeleteModal(${task.id}, ${task.rowIndex}); closeTaskListModal();">Delete</button>
-                            </div>
+                filtered.forEach(task => {
+                    html += `<div class="task-list-item" style="border-left-color:${getOwnerColor(task.owner)}">
+                        <div class="task-info"><h4>${task.task}</h4><p>${task.owner || 'Unassigned'} • ${task.channel} • ${task.priority}</p></div>
+                        <span class="task-status ${getStatusClass(task.status)}">${task.status}</span>
+                        <div class="task-list-actions">
+                            <button class="btn btn-sm btn-primary" onclick="closeTaskListModal();openEditTaskModal(${task.rowIndex})">Edit</button>
+                            <button class="btn btn-sm btn-danger" onclick="closeTaskListModal();openDeleteModal(${task.rowIndex})">Delete</button>
                         </div>
-                    `;
+                    </div>`;
                 });
             }
-            
             document.getElementById('taskListContent').innerHTML = html;
             document.getElementById('taskListModal').classList.add('active');
         }
 
         function showMilestones() {
-            document.querySelectorAll('.stat-card').forEach(card => card.classList.remove('active'));
-            document.getElementById('statMilestones').classList.add('active');
-            
-            document.getElementById('taskListTitle').textContent = `Milestones (${milestones.length})`;
-            
-            let html = '';
-            if (milestones.length === 0) {
-                html = '<p style="color: #888; text-align: center; padding: 2rem;">No milestones found</p>';
-            } else {
-                milestones.forEach(milestone => {
-                    html += `
-                        <div class="task-list-item" style="border-left-color: #9b59b6;">
-                            <div class="task-info">
-                                <h4>🎯 ${milestone.name}</h4>
-                                <p>${milestone.campaign || 'General'} • ${formatDate(milestone.date) || 'No date'}</p>
-                            </div>
-                        </div>
-                    `;
-                });
-            }
-            
+            document.getElementById('taskListTitle').textContent = 'Milestones (' + milestones.length + ')';
+            let html = milestones.length === 0 ? '<p style="color:#888;text-align:center;padding:2rem">No milestones</p>' : '';
+            milestones.forEach(m => {
+                html += `<div class="task-list-item" style="border-left-color:#9b59b6"><div class="task-info"><h4>🎯 ${m.name}</h4><p>${m.campaign || 'General'} • ${formatDate(m.date)}</p></div></div>`;
+            });
             document.getElementById('taskListContent').innerHTML = html;
             document.getElementById('taskListModal').classList.add('active');
         }
 
         function closeTaskListModal() {
             document.getElementById('taskListModal').classList.remove('active');
-            document.querySelectorAll('.stat-card').forEach(card => card.classList.remove('active'));
         }
 
-        // ============================================
-        // TASK MODAL FUNCTIONS
-        // ============================================
+        // Task Modal
         function openTaskModal() {
-    editingTaskId = null;
-    document.getElementById('taskModalTitle').textContent = 'Add New Task';
-    document.getElementById('taskSubmitBtn').textContent = 'Save Task';
-    document.getElementById('taskForm').reset();
-    document.getElementById('taskId').value = '';
-    document.getElementById('taskRowIndex').value = '';
-    
-    // Clear all team member selections
-    document.querySelectorAll('#teamCheckboxes .team-checkbox').forEach(el => {
-        el.classList.remove('selected');
-        const checkbox = el.querySelector('input[type="checkbox"]');
-        if (checkbox) checkbox.checked = false;
-    });
-    
-    // Set default dates
-    const today = new Date();
-    document.getElementById('taskStartDate').value = today.toISOString().split('T')[0];
-    const nextWeek = new Date(today);
-    nextWeek.setDate(nextWeek.getDate() + 7);
-    document.getElementById('taskEndDate').value = nextWeek.toISOString().split('T')[0];
-    
-    document.getElementById('taskModal').classList.add('active');
-}
-    
-    editingTaskId = task.id;
-    document.getElementById('taskModalTitle').textContent = 'Edit Task';
-    document.getElementById('taskSubmitBtn').textContent = 'Update Task';
-    
-    document.getElementById('taskId').value = task.id;
-    document.getElementById('taskRowIndex').value = task.rowIndex;
-    document.getElementById('taskName').value = task.task || '';
-    document.getElementById('taskChannel').value = task.channel || '';
-    document.getElementById('taskCampaign').value = task.campaign || '';
-    document.getElementById('taskPriority').value = task.priority || 'P2';
-    document.getElementById('taskStatus').value = task.status || 'Not started';
-    document.getElementById('taskStartDate').value = task.startDate || '';
-    document.getElementById('taskEndDate').value = task.endDate || '';
-    document.getElementById('taskMilestone').value = task.milestone || '';
-    document.getElementById('taskNotes').value = task.notes || '';
-    
-    // Clear all selections first
-    document.querySelectorAll('#teamCheckboxes .team-checkbox').forEach(el => {
-        el.classList.remove('selected');
-        const checkbox = el.querySelector('input[type="checkbox"]');
-        if (checkbox) checkbox.checked = false;
-    });
-    
-    // Set owner checkboxes based on task owners
-    if (task.owner) {
-        const owners = task.owner.split(',').map(o => o.trim().toLowerCase());
-        document.querySelectorAll('#teamCheckboxes .team-checkbox').forEach(el => {
-            const checkbox = el.querySelector('input[type="checkbox"]');
-            if (checkbox) {
-                const memberName = checkbox.value.toLowerCase();
-                if (owners.some(owner => owner.includes(memberName) || memberName.includes(owner))) {
-                    el.classList.add('selected');
-                    checkbox.checked = true;
-                }
+            editingTaskId = null;
+            document.getElementById('taskModalTitle').textContent = 'Add New Task';
+            document.getElementById('taskSubmitBtn').textContent = 'Save Task';
+            document.getElementById('taskForm').reset();
+            document.getElementById('taskId').value = '';
+            document.getElementById('taskRowIndex').value = '';
+            
+            document.querySelectorAll('#teamCheckboxes .team-checkbox').forEach(el => {
+                el.classList.remove('selected');
+                el.querySelector('input').checked = false;
+            });
+            
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('taskStartDate').value = today;
+            const next = new Date();
+            next.setDate(next.getDate() + 7);
+            document.getElementById('taskEndDate').value = next.toISOString().split('T')[0];
+            
+            document.getElementById('taskModal').classList.add('active');
+        }
+
+        function openEditTaskModal(rowIndex) {
+            const task = tasks.find(t => t.rowIndex === rowIndex);
+            if (!task) return;
+            
+            editingTaskId = task.id;
+            document.getElementById('taskModalTitle').textContent = 'Edit Task';
+            document.getElementById('taskSubmitBtn').textContent = 'Update Task';
+            document.getElementById('taskId').value = task.id;
+            document.getElementById('taskRowIndex').value = task.rowIndex;
+            document.getElementById('taskName').value = task.task;
+            document.getElementById('taskChannel').value = task.channel;
+            document.getElementById('taskCampaign').value = task.campaign;
+            document.getElementById('taskPriority').value = task.priority;
+            document.getElementById('taskStatus').value = task.status;
+            document.getElementById('taskStartDate').value = task.startDate;
+            document.getElementById('taskEndDate').value = task.endDate;
+            document.getElementById('taskMilestone').value = task.milestone || '';
+            document.getElementById('taskNotes').value = task.notes || '';
+            
+            document.querySelectorAll('#teamCheckboxes .team-checkbox').forEach(el => {
+                el.classList.remove('selected');
+                el.querySelector('input').checked = false;
+            });
+            
+            if (task.owner) {
+                const owners = task.owner.split(',').map(o => o.trim().toLowerCase());
+                document.querySelectorAll('#teamCheckboxes .team-checkbox').forEach(el => {
+                    const name = el.dataset.member.toLowerCase();
+                    if (owners.some(o => o.includes(name) || name.includes(o))) {
+                        el.classList.add('selected');
+                        el.querySelector('input').checked = true;
+                    }
+                });
             }
-        });
-    }
-    
-    document.getElementById('taskModal').classList.add('active');
-}
+            
+            document.getElementById('taskModal').classList.add('active');
+        }
 
         function closeTaskModal() {
             document.getElementById('taskModal').classList.remove('active');
@@ -1984,106 +1663,76 @@
         }
 
         async function saveTask(event) {
-    event.preventDefault();
-    
-    // Get selected team members
-    const selectedOwners = [];
-    document.querySelectorAll('#teamCheckboxes .team-checkbox.selected').forEach(el => {
-        const checkbox = el.querySelector('input[type="checkbox"]');
-        if (checkbox) {
-            selectedOwners.push(checkbox.value);
+            event.preventDefault();
+            
+            const owners = [];
+            document.querySelectorAll('#teamCheckboxes .team-checkbox.selected').forEach(el => {
+                owners.push(el.dataset.member);
+            });
+            
+            const taskData = {
+                channel: document.getElementById('taskChannel').value,
+                campaign: document.getElementById('taskCampaign').value,
+                task: document.getElementById('taskName').value,
+                priority: document.getElementById('taskPriority').value,
+                owner: owners.join(', '),
+                status: document.getElementById('taskStatus').value,
+                startDate: document.getElementById('taskStartDate').value,
+                endDate: document.getElementById('taskEndDate').value,
+                milestone: document.getElementById('taskMilestone').value,
+                deliverable: '',
+                notes: document.getElementById('taskNotes').value
+            };
+            
+            const rowIndex = document.getElementById('taskRowIndex').value;
+            closeTaskModal();
+            
+            if (editingTaskId && rowIndex) {
+                showToast('Updating...');
+                await updateTaskInSheet({ rowIndex: parseInt(rowIndex), ...taskData });
+                showToast('Task updated!');
+            } else {
+                showToast('Adding...');
+                await addTaskToSheet(taskData);
+                showToast('Task added!');
+            }
+            
+            setTimeout(async () => {
+                await loadTasksFromSheet();
+                renderTasks();
+                renderMilestones();
+                updateStats();
+            }, 1000);
         }
-    });
-    
-    const taskData = {
-        channel: document.getElementById('taskChannel').value,
-        campaign: document.getElementById('taskCampaign').value,
-        task: document.getElementById('taskName').value,
-        priority: document.getElementById('taskPriority').value,
-        owner: selectedOwners.join(', '),
-        status: document.getElementById('taskStatus').value,
-        startDate: document.getElementById('taskStartDate').value,
-        endDate: document.getElementById('taskEndDate').value,
-        milestone: document.getElementById('taskMilestone').value,
-        deliverable: '',
-        notes: document.getElementById('taskNotes').value
-    };
-    
-    const rowIndex = document.getElementById('taskRowIndex').value;
-    const isEditing = rowIndex && rowIndex !== '' && editingTaskId !== null;
-    
-    closeTaskModal();
-    
-    if (isEditing) {
-        // Update existing task
-        showToast('Updating task...');
-        taskData.rowIndex = parseInt(rowIndex);
-        const success = await updateTaskInSheet(taskData);
-        if (success) {
-            showToast('Task updated successfully!');
-        } else {
-            showToast('Error updating task', true);
-        }
-    } else {
-        // Add new task
-        showToast('Adding task...');
-        const success = await addTaskToSheet(taskData);
-        if (success) {
-            showToast('Task added successfully!');
-        } else {
-            showToast('Error adding task', true);
-        }
-    }
-    
-    // Refresh data from sheet
-    setTimeout(async () => {
-        await loadTasksFromSheet();
-        renderTasks();
-        renderMilestones();
-        updateStats();
-    }, 1000);
-}
 
-        // ============================================
-        // DELETE FUNCTIONS
-        // ============================================
-        function openDeleteModal(taskId, rowIndex) {
-            deleteTaskId = taskId;
+        // Delete
+        function openDeleteModal(rowIndex) {
             deleteTaskRowIndex = rowIndex;
-            const task = tasks.find(t => t.id === taskId);
-            document.getElementById('deleteMessage').textContent = 
-                `Are you sure you want to delete "${task ? task.task : 'this task'}"?`;
+            const task = tasks.find(t => t.rowIndex === rowIndex);
+            document.getElementById('deleteMessage').textContent = 'Delete "' + (task ? task.task : 'this task') + '"?';
             document.getElementById('deleteModal').classList.add('active');
         }
 
         function closeDeleteModal() {
             document.getElementById('deleteModal').classList.remove('active');
-            deleteTaskId = null;
             deleteTaskRowIndex = null;
         }
 
         async function confirmDelete() {
             if (!deleteTaskRowIndex) return;
-            
             closeDeleteModal();
-            showToast('Deleting task...');
-            
-            const success = await deleteTaskFromSheet(deleteTaskRowIndex);
-            
-            if (success) {
-                showToast('Task deleted successfully!');
+            showToast('Deleting...');
+            await deleteTaskFromSheet(deleteTaskRowIndex);
+            showToast('Deleted!');
+            setTimeout(async () => {
                 await loadTasksFromSheet();
                 renderTasks();
                 renderMilestones();
                 updateStats();
-            } else {
-                showToast('Error deleting task', true);
-            }
+            }, 1000);
         }
 
-        // ============================================
-        // MILESTONE MODAL
-        // ============================================
+        // Milestone Modal
         function openMilestoneModal() {
             document.getElementById('milestoneModal').classList.add('active');
         }
@@ -2095,7 +1744,6 @@
 
         async function saveMilestone(event) {
             event.preventDefault();
-            
             const taskData = {
                 channel: '',
                 campaign: document.getElementById('milestoneCampaign').value,
@@ -2109,67 +1757,48 @@
                 deliverable: '',
                 notes: document.getElementById('milestoneDescription').value
             };
-            
             closeMilestoneModal();
             showToast('Adding milestone...');
-            
-            const success = await addTaskToSheet(taskData);
-            
-            if (success) {
-                showToast('Milestone added!');
+            await addTaskToSheet(taskData);
+            showToast('Milestone added!');
+            setTimeout(async () => {
                 await loadTasksFromSheet();
                 renderMilestones();
                 updateStats();
-            } else {
-                showToast('Error adding milestone', true);
-            }
+            }, 1000);
         }
 
-        // ============================================
-        // EXPORT FUNCTION
-        // ============================================
+        // Export
         function exportTasks() {
-            const headers = ['Task', 'Channel', 'Campaign', 'Owner', 'Status', 'Priority', 'Start Date', 'End Date', 'Milestone', 'Notes'];
-            const rows = tasks.map(t => [
-                t.task, t.channel, t.campaign, t.owner, t.status, t.priority, t.startDate, t.endDate, t.milestone, t.notes
-            ]);
-
+            const headers = ['Task', 'Channel', 'Campaign', 'Owner', 'Status', 'Priority', 'Start', 'End', 'Milestone', 'Notes'];
             let csv = headers.join(',') + '\n';
-            rows.forEach(row => {
-                csv += row.map(cell => `"${cell || ''}"`).join(',') + '\n';
+            tasks.forEach(t => {
+                csv += [t.task, t.channel, t.campaign, t.owner, t.status, t.priority, t.startDate, t.endDate, t.milestone, t.notes].map(c => '"' + (c || '') + '"').join(',') + '\n';
             });
-
             const blob = new Blob([csv], { type: 'text/csv' });
-            const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
-            a.href = url;
-            a.download = `wellwallet_tasks_${new Date().toISOString().split('T')[0]}.csv`;
+            a.href = URL.createObjectURL(blob);
+            a.download = 'wellwallet_tasks.csv';
             a.click();
-            URL.revokeObjectURL(url);
-
-            showToast('Tasks exported!');
+            showToast('Exported!');
         }
 
-        // ============================================
-        // TOAST NOTIFICATION
-        // ============================================
-        function showToast(message, isError = false) {
+        // Toast
+        function showToast(msg, isError) {
             const toast = document.getElementById('toast');
-            toast.textContent = message;
+            toast.textContent = msg;
             toast.className = 'toast' + (isError ? ' error' : '');
             toast.classList.add('show');
             setTimeout(() => toast.classList.remove('show'), 3000);
         }
 
-        // ============================================
-        // KEYBOARD SHORTCUTS
-        // ============================================
+        // Keyboard
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape') {
                 closeTaskModal();
-                closeMilestoneModal();
                 closeTaskListModal();
                 closeTeamModal();
+                closeMilestoneModal();
                 closeDeleteModal();
             }
         });
