@@ -713,28 +713,30 @@
         }
 
         .team-checkbox {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 12px;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.8rem;
-        }
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
+    user-select: none;
+}
 
-        .team-checkbox:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
+.team-checkbox:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
 
-        .team-checkbox.selected {
-            background: #3498db;
-        }
+.team-checkbox.selected {
+    background: #3498db;
+    box-shadow: 0 2px 10px rgba(52, 152, 219, 0.4);
+}
 
-        .team-checkbox input {
-            display: none;
-        }
+.team-checkbox input {
+    display: none;
+}
 
         /* Task List in Modal */
         .task-list-container {
@@ -1379,25 +1381,26 @@
         }
 
         function renderTeamCheckboxes() {
-            const container = document.getElementById('teamCheckboxes');
-            let html = '';
-            
-            teamMembers.forEach(member => {
-                html += `<label class="team-checkbox" id="checkbox-${member.toLowerCase().replace(/\s+/g, '')}">
-                    <input type="checkbox" name="taskOwners" value="${member}">
-                    <span>${member}</span>
-                </label>`;
-            });
-            
-            container.innerHTML = html;
-            
-            // Add click handlers
-            document.querySelectorAll('.team-checkbox').forEach(checkbox => {
-                checkbox.addEventListener('click', function() {
-                    this.classList.toggle('selected');
-                });
-            });
-        }
+    const container = document.getElementById('teamCheckboxes');
+    let html = '';
+    
+    teamMembers.forEach(member => {
+        html += `<label class="team-checkbox" id="checkbox-${member.toLowerCase().replace(/\s+/g, '')}" onclick="toggleTeamMember(this, '${member}')">
+            <input type="checkbox" name="taskOwners" value="${member}" style="display:none;">
+            <span>${member}</span>
+        </label>`;
+    });
+    
+    container.innerHTML = html;
+}
+
+function toggleTeamMember(element, memberName) {
+    element.classList.toggle('selected');
+    const checkbox = element.querySelector('input[type="checkbox"]');
+    if (checkbox) {
+        checkbox.checked = !checkbox.checked;
+    }
+}
 
         function manageTeam() {
             const container = document.getElementById('currentTeamList');
