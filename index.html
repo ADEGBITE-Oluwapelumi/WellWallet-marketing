@@ -61,6 +61,28 @@
         .header-actions {
             display: flex;
             gap: 12px;
+            align-items: center;
+        }
+
+        .sync-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            color: #888;
+        }
+
+        .sync-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #27ae60;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
 
         .btn {
@@ -92,9 +114,24 @@
             color: white;
         }
 
+        .btn-danger {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+        }
+
         .btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 0.75rem;
         }
 
         /* Main Content */
@@ -104,7 +141,7 @@
             margin: 0 auto;
         }
 
-        /* Stats Cards */
+        /* Stats Cards - Clickable */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -119,11 +156,18 @@
             padding: 1.5rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .stat-card:hover {
             transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-card.active {
+            border-color: #3498db;
+            box-shadow: 0 0 20px rgba(52, 152, 219, 0.3);
         }
 
         .stat-icon {
@@ -257,6 +301,11 @@
         .team-filter.sales { background: #27ae60; color: white; }
         .team-filter.sarah { background: #e74c3c; color: white; }
         .team-filter.samuel { background: #7f8c8d; color: white; }
+        .team-filter.lumi { background: #e91e63; color: white; }
+        .team-filter.cyril { background: #00bcd4; color: white; }
+        .team-filter.chisom { background: #ff5722; color: white; }
+        .team-filter.tochukwu { background: #795548; color: white; }
+        .team-filter.ijele { background: #607d8b; color: white; }
 
         .team-filter:not(.active) {
             opacity: 0.5;
@@ -292,7 +341,7 @@
 
         .gantt-header {
             display: grid;
-            grid-template-columns: 250px 1fr;
+            grid-template-columns: 280px 1fr;
             background: rgba(255, 255, 255, 0.05);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -336,7 +385,7 @@
 
         .gantt-row {
             display: grid;
-            grid-template-columns: 250px 1fr;
+            grid-template-columns: 280px 1fr;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             transition: background 0.3s ease;
         }
@@ -358,6 +407,12 @@
             width: 4px;
             height: 30px;
             border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        .task-details {
+            flex: 1;
+            min-width: 0;
         }
 
         .task-details h4 {
@@ -367,12 +422,49 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 180px;
         }
 
         .task-meta {
             font-size: 0.7rem;
             color: #888;
+        }
+
+        .task-actions {
+            display: flex;
+            gap: 4px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gantt-row:hover .task-actions {
+            opacity: 1;
+        }
+
+        .task-action-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .task-action-btn.edit {
+            background: rgba(52, 152, 219, 0.2);
+            color: #3498db;
+        }
+
+        .task-action-btn.delete {
+            background: rgba(231, 76, 60, 0.2);
+            color: #e74c3c;
+        }
+
+        .task-action-btn:hover {
+            transform: scale(1.1);
         }
 
         .gantt-task-timeline {
@@ -405,24 +497,6 @@
         .task-bar.in-progress { background: linear-gradient(135deg, #f39c12, #e67e22); }
         .task-bar.completed { background: linear-gradient(135deg, #27ae60, #2ecc71); }
         .task-bar.blocked { background: linear-gradient(135deg, #e74c3c, #c0392b); }
-
-        .task-progress {
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 6px 0 0 6px;
-        }
-
-        /* Owner Colors */
-        .owner-ruth { border-left: 3px solid #9b59b6; }
-        .owner-dara { border-left: 3px solid #1abc9c; }
-        .owner-sarah { border-left: 3px solid #e74c3c; }
-        .owner-samuel { border-left: 3px solid #7f8c8d; }
-        .owner-founders { border-left: 3px solid #34495e; }
-        .owner-sales { border-left: 3px solid #27ae60; }
-        .owner-multiple { border-left: 3px solid #f39c12; }
 
         /* Legend */
         .legend {
@@ -534,7 +608,7 @@
             border-radius: 20px;
             padding: 2rem;
             width: 90%;
-            max-width: 500px;
+            max-width: 600px;
             max-height: 90vh;
             overflow-y: auto;
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -544,6 +618,10 @@
 
         .modal-overlay.active .modal {
             transform: scale(1);
+        }
+
+        .modal.large {
+            max-width: 900px;
         }
 
         .modal-header {
@@ -621,6 +699,117 @@
 
         .modal-actions button {
             flex: 1;
+        }
+
+        /* Multi-select for team members */
+        .team-checkboxes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .team-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        .team-checkbox:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .team-checkbox.selected {
+            background: #3498db;
+        }
+
+        .team-checkbox input {
+            display: none;
+        }
+
+        /* Task List in Modal */
+        .task-list-container {
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .task-list-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin-bottom: 0.5rem;
+            border-left: 4px solid #3498db;
+            transition: all 0.3s ease;
+        }
+
+        .task-list-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .task-list-item .task-info {
+            flex: 1;
+        }
+
+        .task-list-item .task-info h4 {
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+
+        .task-list-item .task-info p {
+            font-size: 0.75rem;
+            color: #888;
+        }
+
+        .task-list-item .task-status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .task-status.not-started { background: #7f8c8d; }
+        .task-status.in-progress { background: #f39c12; }
+        .task-status.completed { background: #27ae60; }
+        .task-status.blocked { background: #e74c3c; }
+
+        .task-list-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        /* Team Management */
+        .team-management {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .add-team-member {
+            display: flex;
+            gap: 8px;
+            margin-top: 0.5rem;
+        }
+
+        .add-team-member input {
+            flex: 1;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-size: 0.875rem;
         }
 
         /* Floating Action Button */
@@ -704,6 +893,16 @@
             background: #e74c3c;
         }
 
+        /* Confirmation Modal */
+        .confirm-modal {
+            text-align: center;
+        }
+
+        .confirm-modal p {
+            margin-bottom: 1.5rem;
+            color: #ccc;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .header {
@@ -723,6 +922,11 @@
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+
+            .modal {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
         }
     </style>
 </head>
@@ -737,6 +941,13 @@
             </div>
         </div>
         <div class="header-actions">
+            <div class="sync-indicator">
+                <div class="sync-dot"></div>
+                <span id="lastSync">Syncing...</span>
+            </div>
+            <button class="btn btn-secondary" onclick="manageTeam()">
+                👥 Team
+            </button>
             <button class="btn btn-secondary" onclick="exportTasks()">
                 📊 Export
             </button>
@@ -751,34 +962,34 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <!-- Stats Grid -->
+        <!-- Stats Grid - Clickable -->
         <div class="stats-grid">
-            <div class="stat-card">
+            <div class="stat-card" onclick="showTasksByStatus('all')" id="statTotal">
                 <div class="stat-icon total">📋</div>
                 <div class="stat-number" id="totalTasks">0</div>
                 <div class="stat-label">Total Tasks</div>
             </div>
-            <div class="stat-card">
+            <div class="stat-card" onclick="showTasksByStatus('Not started')" id="statNotStarted">
                 <div class="stat-icon not-started">📝</div>
                 <div class="stat-number" id="notStartedTasks">0</div>
                 <div class="stat-label">Not Started</div>
             </div>
-            <div class="stat-card">
+            <div class="stat-card" onclick="showTasksByStatus('In progress')" id="statInProgress">
                 <div class="stat-icon in-progress">🔄</div>
                 <div class="stat-number" id="inProgressTasks">0</div>
                 <div class="stat-label">In Progress</div>
             </div>
-            <div class="stat-card">
+            <div class="stat-card" onclick="showTasksByStatus('Completed')" id="statCompleted">
                 <div class="stat-icon completed">✅</div>
                 <div class="stat-number" id="completedTasks">0</div>
                 <div class="stat-label">Completed</div>
             </div>
-            <div class="stat-card">
+            <div class="stat-card" onclick="showTasksByStatus('Blocked')" id="statBlocked">
                 <div class="stat-icon blocked">🚫</div>
                 <div class="stat-number" id="blockedTasks">0</div>
                 <div class="stat-label">Blocked</div>
             </div>
-            <div class="stat-card">
+            <div class="stat-card" onclick="showMilestones()" id="statMilestones">
                 <div class="stat-icon milestones">🎯</div>
                 <div class="stat-number" id="totalMilestones">0</div>
                 <div class="stat-label">Milestones</div>
@@ -788,11 +999,11 @@
         <!-- Timeline Controls -->
         <div class="timeline-controls">
             <div class="timeline-nav">
-                <button onclick="navigateTimeline('start')">⏮</button>
-                <button onclick="navigateTimeline('prev')">◀</button>
+                <button onclick="navigateTimeline('start')" title="Go to start">⏮</button>
+                <button onclick="navigateTimeline('prev')" title="Previous">◀</button>
                 <span class="current-period" id="currentPeriod">Loading...</span>
-                <button onclick="navigateTimeline('next')">▶</button>
-                <button onclick="navigateTimeline('end')">⏭</button>
+                <button onclick="navigateTimeline('next')" title="Next">▶</button>
+                <button onclick="navigateTimeline('end')" title="Go to end">⏭</button>
                 <button class="btn btn-primary" onclick="navigateTimeline('today')" style="margin-left: 10px;">Today</button>
             </div>
             <div class="view-toggle">
@@ -807,14 +1018,8 @@
         <div class="filter-bar">
             <div class="filter-group">
                 <label>Team:</label>
-                <div class="team-filters">
-                    <button class="team-filter all active" onclick="filterByTeam('all')">All</button>
-                    <button class="team-filter ruth" onclick="filterByTeam('ruth')">Ruth</button>
-                    <button class="team-filter dara" onclick="filterByTeam('dara')">Dara</button>
-                    <button class="team-filter founders" onclick="filterByTeam('founders')">Founders</button>
-                    <button class="team-filter sales" onclick="filterByTeam('sales')">Sales</button>
-                    <button class="team-filter sarah" onclick="filterByTeam('sarah')">Sarah</button>
-                    <button class="team-filter samuel" onclick="filterByTeam('samuel')">Samuel</button>
+                <div class="team-filters" id="teamFilters">
+                    <!-- Team filters will be generated dynamically -->
                 </div>
             </div>
             <div class="filter-group">
@@ -830,31 +1035,8 @@
         </div>
 
         <!-- Legend -->
-        <div class="legend" style="background: rgba(255,255,255,0.05); border-radius: 12px; margin-bottom: 1rem;">
-            <div class="legend-item">
-                <div class="legend-color" style="background: #9b59b6;"></div>
-                <span>Ruth</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color" style="background: #1abc9c;"></div>
-                <span>Dara</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color" style="background: #27ae60;"></div>
-                <span>Sales</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color" style="background: #e74c3c;"></div>
-                <span>Sarah</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color" style="background: #7f8c8d;"></div>
-                <span>Samuel</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color" style="background: #f39c12;"></div>
-                <span>Multiple</span>
-            </div>
+        <div class="legend" style="background: rgba(255,255,255,0.05); border-radius: 12px; margin-bottom: 1rem;" id="legendContainer">
+            <!-- Legend will be generated dynamically -->
         </div>
 
         <!-- Gantt Chart -->
@@ -890,14 +1072,17 @@
     <!-- Floating Action Button -->
     <button class="fab" onclick="openTaskModal()">+</button>
 
-    <!-- Add Task Modal -->
+    <!-- Add/Edit Task Modal -->
     <div class="modal-overlay" id="taskModal">
         <div class="modal">
             <div class="modal-header">
-                <h2>Add New Task</h2>
+                <h2 id="taskModalTitle">Add New Task</h2>
                 <button class="modal-close" onclick="closeTaskModal()">×</button>
             </div>
             <form id="taskForm" onsubmit="saveTask(event)">
+                <input type="hidden" id="taskId">
+                <input type="hidden" id="taskRowIndex">
+                
                 <div class="form-group">
                     <label>Task Name *</label>
                     <input type="text" id="taskName" required placeholder="Enter task name">
@@ -929,41 +1114,39 @@
                         <select id="taskPriority">
                             <option value="P0">P0 - Critical</option>
                             <option value="P1">P1 - High</option>
-                            <option value="P2">P2 - Medium</option>
+                            <option value="P2" selected>P2 - Medium</option>
                             <option value="P3">P3 - Low</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Owner *</label>
-                        <select id="taskOwner" required>
-                            <option value="">Select owner</option>
-                            <option value="Ruth">Ruth</option>
-                            <option value="Dara">Dara</option>
-                            <option value="Sarah">Sarah</option>
-                            <option value="Samuel">Samuel</option>
-                            <option value="Founders">Founders</option>
-                            <option value="Sales">Sales</option>
+                        <label>Status</label>
+                        <select id="taskStatus">
+                            <option value="Not started">Not Started</option>
+                            <option value="In progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Blocked">Blocked</option>
                         </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Assign To (select multiple team members)</label>
+                    <div class="team-checkboxes" id="teamCheckboxes">
+                        <!-- Team checkboxes will be generated dynamically -->
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Start Date *</label>
-                        <input type="date" id="taskStartDate" required>
+                        <label>Start Date</label>
+                        <input type="date" id="taskStartDate">
                     </div>
                     <div class="form-group">
-                        <label>End Date *</label>
-                        <input type="date" id="taskEndDate" required>
+                        <label>End Date</label>
+                        <input type="date" id="taskEndDate">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Status</label>
-                    <select id="taskStatus">
-                        <option value="Not started">Not Started</option>
-                        <option value="In progress">In Progress</option>
-                        <option value="Completed">Completed</option>
-                        <option value="Blocked">Blocked</option>
-                    </select>
+                    <label>Milestone</label>
+                    <input type="text" id="taskMilestone" placeholder="Enter milestone name (optional)">
                 </div>
                 <div class="form-group">
                     <label>Notes</label>
@@ -971,13 +1154,52 @@
                 </div>
                 <div class="modal-actions">
                     <button type="button" class="btn btn-secondary" onclick="closeTaskModal()">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Save Task</button>
+                    <button type="submit" class="btn btn-primary" id="taskSubmitBtn">Save Task</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Add Milestone Modal -->
+    <!-- Task List Modal -->
+    <div class="modal-overlay" id="taskListModal">
+        <div class="modal large">
+            <div class="modal-header">
+                <h2 id="taskListTitle">Tasks</h2>
+                <button class="modal-close" onclick="closeTaskListModal()">×</button>
+            </div>
+            <div class="task-list-container" id="taskListContent">
+                <!-- Task list will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Management Modal -->
+    <div class="modal-overlay" id="teamModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Manage Team Members</h2>
+                <button class="modal-close" onclick="closeTeamModal()">×</button>
+            </div>
+            <div class="form-group">
+                <label>Current Team Members</label>
+                <div class="team-checkboxes" id="currentTeamList">
+                    <!-- Team members will be listed here -->
+                </div>
+            </div>
+            <div class="team-management">
+                <label style="font-size: 0.875rem; color: #888;">Add New Team Member</label>
+                <div class="add-team-member">
+                    <input type="text" id="newTeamMemberName" placeholder="Enter name">
+                    <button class="btn btn-success btn-sm" onclick="addTeamMember()">Add</button>
+                </div>
+            </div>
+            <div class="modal-actions" style="margin-top: 2rem;">
+                <button class="btn btn-secondary" onclick="closeTeamModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Milestone Modal -->
     <div class="modal-overlay" id="milestoneModal">
         <div class="modal">
             <div class="modal-header">
@@ -1014,15 +1236,19 @@
         </div>
     </div>
 
-    <!-- Task List Modal (for viewing all tasks) -->
-    <div class="modal-overlay" id="taskListModal">
-        <div class="modal" style="max-width: 800px;">
+    <!-- Delete Confirmation Modal -->
+    <div class="modal-overlay" id="deleteModal">
+        <div class="modal" style="max-width: 400px;">
             <div class="modal-header">
-                <h2>All Tasks</h2>
-                <button class="modal-close" onclick="closeTaskListModal()">×</button>
+                <h2>Confirm Delete</h2>
+                <button class="modal-close" onclick="closeDeleteModal()">×</button>
             </div>
-            <div id="taskListContent" style="max-height: 60vh; overflow-y: auto;">
-                <!-- Task list will be populated here -->
+            <div class="confirm-modal">
+                <p id="deleteMessage">Are you sure you want to delete this task?</p>
+                <div class="modal-actions">
+                    <button class="btn btn-secondary" onclick="closeDeleteModal()">Cancel</button>
+                    <button class="btn btn-danger" onclick="confirmDelete()">Delete</button>
+                </div>
             </div>
         </div>
     </div>
@@ -1032,30 +1258,41 @@
 
     <script>
         // ============================================
-        // CONFIGURATION - Google Sheets API
+        // CONFIGURATION
         // ============================================
         const GOOGLE_SHEETS_API = 'https://script.google.com/macros/s/AKfycbymceDaxWaQaYiyPAJSYHog3W1YJyjplcDRDb1sWAMg23AQYeGGs1djmkwBtKQMLMMZbw/exec';
+        const AUTO_REFRESH_INTERVAL = 30000; // 30 seconds
 
         // ============================================
         // STATE MANAGEMENT
         // ============================================
         let tasks = [];
         let milestones = [];
+        let teamMembers = ['Ruth', 'Dara', 'Sarah', 'Samuel', 'Lumi', 'Tochukwu', 'Ijele', 'Cyril', 'Chisom', 'Founders', 'Sales'];
         let currentView = '2weeks';
         let viewStartDate = new Date();
         let activeTeamFilter = 'all';
         let activeChannelFilter = 'all';
+        let editingTaskId = null;
+        let deleteTaskId = null;
+        let deleteTaskRowIndex = null;
+        let autoRefreshTimer = null;
 
         // ============================================
         // INITIALIZATION
         // ============================================
         document.addEventListener('DOMContentLoaded', function() {
+            loadTeamMembers();
             initializeApp();
+            startAutoRefresh();
         });
 
         async function initializeApp() {
             setViewStartToToday();
             await loadTasksFromSheet();
+            renderTeamFilters();
+            renderLegend();
+            renderTeamCheckboxes();
             renderTimeline();
             renderTasks();
             renderMilestones();
@@ -1065,10 +1302,151 @@
         function setViewStartToToday() {
             viewStartDate = new Date();
             viewStartDate.setHours(0, 0, 0, 0);
-            // Start from beginning of current week (Monday)
             const day = viewStartDate.getDay();
             const diff = viewStartDate.getDate() - day + (day === 0 ? -6 : 1);
             viewStartDate.setDate(diff);
+        }
+
+        // ============================================
+        // AUTO REFRESH
+        // ============================================
+        function startAutoRefresh() {
+            if (autoRefreshTimer) clearInterval(autoRefreshTimer);
+            autoRefreshTimer = setInterval(async () => {
+                await loadTasksFromSheet();
+                renderTasks();
+                renderMilestones();
+                updateStats();
+                updateLastSyncTime();
+            }, AUTO_REFRESH_INTERVAL);
+        }
+
+        function updateLastSyncTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+            document.getElementById('lastSync').textContent = `Last sync: ${timeStr}`;
+        }
+
+        // ============================================
+        // TEAM MANAGEMENT
+        // ============================================
+        function loadTeamMembers() {
+            const saved = localStorage.getItem('wellwallet_team');
+            if (saved) {
+                teamMembers = JSON.parse(saved);
+            }
+        }
+
+        function saveTeamMembers() {
+            localStorage.setItem('wellwallet_team', JSON.stringify(teamMembers));
+        }
+
+        function renderTeamFilters() {
+            const container = document.getElementById('teamFilters');
+            let html = `<button class="team-filter all ${activeTeamFilter === 'all' ? 'active' : ''}" onclick="filterByTeam('all')">All</button>`;
+            
+            teamMembers.forEach(member => {
+                const className = member.toLowerCase().replace(/\s+/g, '');
+                html += `<button class="team-filter ${className} ${activeTeamFilter === member.toLowerCase() ? 'active' : ''}" 
+                         onclick="filterByTeam('${member.toLowerCase()}')">${member}</button>`;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        function renderLegend() {
+            const container = document.getElementById('legendContainer');
+            const colors = {
+                'Ruth': '#9b59b6', 'Dara': '#1abc9c', 'Sarah': '#e74c3c', 'Samuel': '#7f8c8d',
+                'Lumi': '#e91e63', 'Tochukwu': '#795548', 'Ijele': '#607d8b', 'Cyril': '#00bcd4',
+                'Chisom': '#ff5722', 'Founders': '#34495e', 'Sales': '#27ae60', 'Multiple': '#f39c12'
+            };
+            
+            let html = '';
+            teamMembers.forEach(member => {
+                const color = colors[member] || '#888';
+                html += `<div class="legend-item">
+                    <div class="legend-color" style="background: ${color};"></div>
+                    <span>${member}</span>
+                </div>`;
+            });
+            html += `<div class="legend-item">
+                <div class="legend-color" style="background: #f39c12;"></div>
+                <span>Multiple</span>
+            </div>`;
+            
+            container.innerHTML = html;
+        }
+
+        function renderTeamCheckboxes() {
+            const container = document.getElementById('teamCheckboxes');
+            let html = '';
+            
+            teamMembers.forEach(member => {
+                html += `<label class="team-checkbox" id="checkbox-${member.toLowerCase().replace(/\s+/g, '')}">
+                    <input type="checkbox" name="taskOwners" value="${member}">
+                    <span>${member}</span>
+                </label>`;
+            });
+            
+            container.innerHTML = html;
+            
+            // Add click handlers
+            document.querySelectorAll('.team-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('click', function() {
+                    this.classList.toggle('selected');
+                });
+            });
+        }
+
+        function manageTeam() {
+            const container = document.getElementById('currentTeamList');
+            let html = '';
+            
+            teamMembers.forEach(member => {
+                html += `<div class="team-checkbox selected" style="justify-content: space-between;">
+                    <span>${member}</span>
+                    <button onclick="removeTeamMember('${member}')" style="background:none;border:none;color:#e74c3c;cursor:pointer;">✕</button>
+                </div>`;
+            });
+            
+            container.innerHTML = html;
+            document.getElementById('teamModal').classList.add('active');
+        }
+
+        function closeTeamModal() {
+            document.getElementById('teamModal').classList.remove('active');
+        }
+
+        function addTeamMember() {
+            const input = document.getElementById('newTeamMemberName');
+            const name = input.value.trim();
+            
+            if (name && !teamMembers.includes(name)) {
+                teamMembers.push(name);
+                saveTeamMembers();
+                renderTeamFilters();
+                renderLegend();
+                renderTeamCheckboxes();
+                manageTeam(); // Refresh the modal
+                input.value = '';
+                showToast(`${name} added to team!`);
+            } else if (teamMembers.includes(name)) {
+                showToast('Team member already exists!', true);
+            }
+        }
+
+        function removeTeamMember(name) {
+            const index = teamMembers.indexOf(name);
+            if (index > -1) {
+                teamMembers.splice(index, 1);
+                saveTeamMembers();
+                renderTeamFilters();
+                renderLegend();
+                renderTeamCheckboxes();
+                manageTeam();
+                showToast(`${name} removed from team`);
+            }
         }
 
         // ============================================
@@ -1080,22 +1458,28 @@
                 if (!response.ok) throw new Error('Failed to fetch tasks');
                 
                 const data = await response.json();
-                tasks = data.map((row, index) => ({
-                    id: index + 1,
-                    channel: row.channel || row.Channel || '',
-                    campaign: row.campaign || row.Campaign || '',
-                    task: row.task || row.Task || '',
-                    priority: row.priority || row.Priority || 'P2',
-                    owner: row.owner || row.Owner || '',
-                    status: normalizeStatus(row.status || row.Status || 'Not started'),
-                    startDate: row.startDate || row.StartDate || row['Start date'] || '',
-                    endDate: row.endDate || row.EndDate || row['End date'] || '',
-                    milestone: row.milestone || row.Milestone || '',
-                    deliverable: row.deliverable || row.Deliverable || '',
-                    notes: row.notes || row.Notes || ''
+                
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+                
+                tasks = data.map((row) => ({
+                    id: row.id,
+                    rowIndex: row.rowIndex,
+                    channel: row.channel || '',
+                    campaign: row.campaign || '',
+                    task: row.task || '',
+                    priority: row.priority || 'P2',
+                    owner: row.owner || '',
+                    status: normalizeStatus(row.status || 'Not started'),
+                    startDate: row.startDate || '',
+                    endDate: row.endDate || '',
+                    milestone: row.milestone || '',
+                    deliverable: row.deliverable || '',
+                    notes: row.notes || ''
                 })).filter(t => t.task && t.task.trim() !== '');
 
-                // Extract milestones from tasks
+                // Extract milestones
                 milestones = tasks
                     .filter(t => t.milestone && t.milestone.trim() !== '')
                     .map(t => ({
@@ -1105,7 +1489,8 @@
                         campaign: t.campaign
                     }));
 
-                console.log('Loaded tasks:', tasks);
+                updateLastSyncTime();
+                console.log('Loaded tasks:', tasks.length);
             } catch (error) {
                 console.error('Error loading tasks:', error);
                 showToast('Error loading tasks. Please refresh.', true);
@@ -1116,26 +1501,40 @@
             try {
                 const response = await fetch(GOOGLE_SHEETS_API, {
                     method: 'POST',
-                    body: JSON.stringify({
-                        action: 'add',
-                        channel: taskData.channel,
-                        campaign: taskData.campaign,
-                        task: taskData.task,
-                        priority: taskData.priority,
-                        owner: taskData.owner,
-                        status: taskData.status,
-                        startDate: taskData.startDate,
-                        endDate: taskData.endDate,
-                        milestone: taskData.milestone || '',
-                        deliverable: taskData.deliverable || '',
-                        notes: taskData.notes || ''
-                    })
+                    body: JSON.stringify({ action: 'add', ...taskData })
                 });
-                
                 const result = await response.json();
                 return result.success;
             } catch (error) {
                 console.error('Error adding task:', error);
+                return false;
+            }
+        }
+
+        async function updateTaskInSheet(taskData) {
+            try {
+                const response = await fetch(GOOGLE_SHEETS_API, {
+                    method: 'POST',
+                    body: JSON.stringify({ action: 'update', ...taskData })
+                });
+                const result = await response.json();
+                return result.success;
+            } catch (error) {
+                console.error('Error updating task:', error);
+                return false;
+            }
+        }
+
+        async function deleteTaskFromSheet(rowIndex) {
+            try {
+                const response = await fetch(GOOGLE_SHEETS_API, {
+                    method: 'POST',
+                    body: JSON.stringify({ action: 'delete', rowIndex: rowIndex })
+                });
+                const result = await response.json();
+                return result.success;
+            } catch (error) {
+                console.error('Error deleting task:', error);
                 return false;
             }
         }
@@ -1221,28 +1620,32 @@
 
             let html = '';
             filteredTasks.forEach(task => {
-                const ownerClass = getOwnerClass(task.owner);
+                const ownerColor = getOwnerColor(task.owner);
                 const statusClass = getStatusClass(task.status);
                 const barStyle = calculateBarPosition(task.startDate, task.endDate);
 
                 html += `
                     <div class="gantt-row">
-                        <div class="gantt-task-info ${ownerClass}" onclick="showTaskDetails(${task.id})">
-                            <div class="task-color" style="background: ${getOwnerColor(task.owner)};"></div>
+                        <div class="gantt-task-info" onclick="openEditTaskModal(${task.rowIndex})">
+                            <div class="task-color" style="background: ${ownerColor};"></div>
                             <div class="task-details">
                                 <h4 title="${task.task}">${task.task}</h4>
-                                <div class="task-meta">${task.owner} • ${task.priority || 'P2'}</div>
+                                <div class="task-meta">${task.owner || 'Unassigned'} • ${task.priority || 'P2'}</div>
+                            </div>
+                            <div class="task-actions">
+                                <button class="task-action-btn edit" onclick="event.stopPropagation(); openEditTaskModal(${task.rowIndex})" title="Edit">✏️</button>
+                                <button class="task-action-btn delete" onclick="event.stopPropagation(); openDeleteModal(${task.id}, ${task.rowIndex})" title="Delete">🗑️</button>
                             </div>
                         </div>
                         <div class="gantt-task-timeline">
                             ${barStyle.visible ? `
                                 <div class="task-bar ${statusClass}" 
                                      style="left: ${barStyle.left}px; width: ${barStyle.width}px;"
-                                     onclick="cycleTaskStatus(${task.id})"
-                                     title="Click to change status">
+                                     onclick="cycleTaskStatus(${task.rowIndex})"
+                                     title="Click to change status: ${task.status}">
                                     ${task.status}
                                 </div>
-                            ` : ''}
+                            ` : '<span style="color:#666;font-size:0.75rem;padding:0 10px;">No dates set</span>'}
                         </div>
                     </div>
                 `;
@@ -1298,29 +1701,18 @@
             });
         }
 
-        function getOwnerClass(owner) {
-            if (!owner) return '';
-            const o = owner.toLowerCase();
-            if (o.includes('ruth')) return 'owner-ruth';
-            if (o.includes('dara')) return 'owner-dara';
-            if (o.includes('sarah')) return 'owner-sarah';
-            if (o.includes('samuel')) return 'owner-samuel';
-            if (o.includes('founder')) return 'owner-founders';
-            if (o.includes('sales')) return 'owner-sales';
-            if (o.includes(',')) return 'owner-multiple';
-            return '';
-        }
-
         function getOwnerColor(owner) {
             if (!owner) return '#888';
+            const colors = {
+                'ruth': '#9b59b6', 'dara': '#1abc9c', 'sarah': '#e74c3c', 'samuel': '#7f8c8d',
+                'lumi': '#e91e63', 'tochukwu': '#795548', 'ijele': '#607d8b', 'cyril': '#00bcd4',
+                'chisom': '#ff5722', 'founders': '#34495e', 'sales': '#27ae60'
+            };
             const o = owner.toLowerCase();
-            if (o.includes('ruth')) return '#9b59b6';
-            if (o.includes('dara')) return '#1abc9c';
-            if (o.includes('sarah')) return '#e74c3c';
-            if (o.includes('samuel')) return '#7f8c8d';
-            if (o.includes('founder')) return '#34495e';
-            if (o.includes('sales')) return '#27ae60';
-            if (o.includes(',')) return '#f39c12';
+            if (o.includes(',')) return '#f39c12'; // Multiple owners
+            for (const [name, color] of Object.entries(colors)) {
+                if (o.includes(name)) return color;
+            }
             return '#888';
         }
 
@@ -1342,12 +1734,11 @@
             const viewEnd = new Date(viewStartDate);
             viewEnd.setDate(viewEnd.getDate() + getViewDays());
 
-            // Check if task is visible in current view
             if (end < viewStartDate || start > viewEnd) {
                 return { visible: false, left: 0, width: 0 };
             }
 
-            const dayWidth = 40; // matches min-width in CSS
+            const dayWidth = 40;
             const effectiveStart = start < viewStartDate ? viewStartDate : start;
             const effectiveEnd = end > viewEnd ? viewEnd : end;
 
@@ -1357,7 +1748,7 @@
             return {
                 visible: true,
                 left: startOffset * dayWidth,
-                width: Math.max(duration * dayWidth - 4, 40)
+                width: Math.max(duration * dayWidth - 4, 60)
             };
         }
 
@@ -1373,21 +1764,11 @@
         function navigateTimeline(direction) {
             const days = getViewDays();
             switch (direction) {
-                case 'prev':
-                    viewStartDate.setDate(viewStartDate.getDate() - days);
-                    break;
-                case 'next':
-                    viewStartDate.setDate(viewStartDate.getDate() + days);
-                    break;
-                case 'today':
-                    setViewStartToToday();
-                    break;
-                case 'start':
-                    viewStartDate = new Date('2025-02-01');
-                    break;
-                case 'end':
-                    viewStartDate = new Date('2025-04-01');
-                    break;
+                case 'prev': viewStartDate.setDate(viewStartDate.getDate() - days); break;
+                case 'next': viewStartDate.setDate(viewStartDate.getDate() + days); break;
+                case 'today': setViewStartToToday(); break;
+                case 'start': viewStartDate = new Date('2025-02-01'); break;
+                case 'end': viewStartDate = new Date('2025-04-01'); break;
             }
             renderTimeline();
             renderTasks();
@@ -1395,9 +1776,7 @@
 
         function setView(view) {
             currentView = view;
-            document.querySelectorAll('.view-toggle button').forEach(btn => {
-                btn.classList.remove('active');
-            });
+            document.querySelectorAll('.view-toggle button').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
             renderTimeline();
             renderTasks();
@@ -1405,10 +1784,8 @@
 
         function filterByTeam(team) {
             activeTeamFilter = team;
-            document.querySelectorAll('.team-filter').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            document.querySelector(`.team-filter.${team}`).classList.add('active');
+            document.querySelectorAll('.team-filter').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
             renderTasks();
         }
 
@@ -1417,42 +1794,274 @@
             renderTasks();
         }
 
-        function cycleTaskStatus(taskId) {
-            const task = tasks.find(t => t.id === taskId);
+        async function cycleTaskStatus(rowIndex) {
+            const task = tasks.find(t => t.rowIndex === rowIndex);
             if (!task) return;
 
             const statuses = ['Not started', 'In progress', 'Completed', 'Blocked'];
             const currentIndex = statuses.indexOf(task.status);
-            task.status = statuses[(currentIndex + 1) % statuses.length];
-
+            const newStatus = statuses[(currentIndex + 1) % statuses.length];
+            
+            task.status = newStatus;
             renderTasks();
             updateStats();
-            showToast(`Status changed to: ${task.status}`);
-        }
+            showToast(`Status changed to: ${newStatus}`);
 
-        function showTaskDetails(taskId) {
-            const task = tasks.find(t => t.id === taskId);
-            if (!task) return;
-
-            alert(`Task: ${task.task}\nChannel: ${task.channel}\nCampaign: ${task.campaign}\nOwner: ${task.owner}\nStatus: ${task.status}\nPriority: ${task.priority}\nStart: ${task.startDate}\nEnd: ${task.endDate}\nNotes: ${task.notes || 'None'}`);
+            await updateTaskInSheet({
+                rowIndex: rowIndex,
+                channel: task.channel,
+                campaign: task.campaign,
+                task: task.task,
+                priority: task.priority,
+                owner: task.owner,
+                status: newStatus,
+                startDate: task.startDate,
+                endDate: task.endDate,
+                milestone: task.milestone,
+                deliverable: task.deliverable,
+                notes: task.notes
+            });
         }
 
         // ============================================
-        // MODAL FUNCTIONS
+        // SHOW TASKS BY STATUS (Dashboard Click)
+        // ============================================
+        function showTasksByStatus(status) {
+            // Remove active class from all stat cards
+            document.querySelectorAll('.stat-card').forEach(card => card.classList.remove('active'));
+            
+            // Add active class to clicked card
+            if (status === 'all') document.getElementById('statTotal').classList.add('active');
+            else if (status === 'Not started') document.getElementById('statNotStarted').classList.add('active');
+            else if (status === 'In progress') document.getElementById('statInProgress').classList.add('active');
+            else if (status === 'Completed') document.getElementById('statCompleted').classList.add('active');
+            else if (status === 'Blocked') document.getElementById('statBlocked').classList.add('active');
+
+            const filteredTasks = status === 'all' ? tasks : tasks.filter(t => t.status === status);
+            
+            const title = status === 'all' ? 'All Tasks' : `${status} Tasks`;
+            document.getElementById('taskListTitle').textContent = `${title} (${filteredTasks.length})`;
+            
+            let html = '';
+            if (filteredTasks.length === 0) {
+                html = '<p style="color: #888; text-align: center; padding: 2rem;">No tasks found</p>';
+            } else {
+                filteredTasks.forEach(task => {
+                    const statusClass = getStatusClass(task.status);
+                    html += `
+                        <div class="task-list-item" style="border-left-color: ${getOwnerColor(task.owner)};">
+                            <div class="task-info">
+                                <h4>${task.task}</h4>
+                                <p>${task.owner || 'Unassigned'} • ${task.channel || 'No channel'} • ${task.priority || 'P2'}</p>
+                            </div>
+                            <span class="task-status ${statusClass}">${task.status}</span>
+                            <div class="task-list-actions">
+                                <button class="btn btn-sm btn-primary" onclick="openEditTaskModal(${task.rowIndex}); closeTaskListModal();">Edit</button>
+                                <button class="btn btn-sm btn-danger" onclick="openDeleteModal(${task.id}, ${task.rowIndex}); closeTaskListModal();">Delete</button>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+            
+            document.getElementById('taskListContent').innerHTML = html;
+            document.getElementById('taskListModal').classList.add('active');
+        }
+
+        function showMilestones() {
+            document.querySelectorAll('.stat-card').forEach(card => card.classList.remove('active'));
+            document.getElementById('statMilestones').classList.add('active');
+            
+            document.getElementById('taskListTitle').textContent = `Milestones (${milestones.length})`;
+            
+            let html = '';
+            if (milestones.length === 0) {
+                html = '<p style="color: #888; text-align: center; padding: 2rem;">No milestones found</p>';
+            } else {
+                milestones.forEach(milestone => {
+                    html += `
+                        <div class="task-list-item" style="border-left-color: #9b59b6;">
+                            <div class="task-info">
+                                <h4>🎯 ${milestone.name}</h4>
+                                <p>${milestone.campaign || 'General'} • ${formatDate(milestone.date) || 'No date'}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+            
+            document.getElementById('taskListContent').innerHTML = html;
+            document.getElementById('taskListModal').classList.add('active');
+        }
+
+        function closeTaskListModal() {
+            document.getElementById('taskListModal').classList.remove('active');
+            document.querySelectorAll('.stat-card').forEach(card => card.classList.remove('active'));
+        }
+
+        // ============================================
+        // TASK MODAL FUNCTIONS
         // ============================================
         function openTaskModal() {
+            editingTaskId = null;
+            document.getElementById('taskModalTitle').textContent = 'Add New Task';
+            document.getElementById('taskSubmitBtn').textContent = 'Save Task';
+            document.getElementById('taskForm').reset();
+            document.getElementById('taskId').value = '';
+            document.getElementById('taskRowIndex').value = '';
+            
+            // Reset team checkboxes
+            document.querySelectorAll('.team-checkbox').forEach(cb => cb.classList.remove('selected'));
+            document.querySelectorAll('input[name="taskOwners"]').forEach(cb => cb.checked = false);
+            
+            // Set default dates
+            const today = new Date();
+            document.getElementById('taskStartDate').value = today.toISOString().split('T')[0];
+            const nextWeek = new Date(today);
+            nextWeek.setDate(nextWeek.getDate() + 7);
+            document.getElementById('taskEndDate').value = nextWeek.toISOString().split('T')[0];
+            
             document.getElementById('taskModal').classList.add('active');
-            document.getElementById('taskStartDate').valueAsDate = new Date();
-            const endDate = new Date();
-            endDate.setDate(endDate.getDate() + 7);
-            document.getElementById('taskEndDate').valueAsDate = endDate;
+        }
+
+        function openEditTaskModal(rowIndex) {
+            const task = tasks.find(t => t.rowIndex === rowIndex);
+            if (!task) return;
+            
+            editingTaskId = task.id;
+            document.getElementById('taskModalTitle').textContent = 'Edit Task';
+            document.getElementById('taskSubmitBtn').textContent = 'Update Task';
+            
+            document.getElementById('taskId').value = task.id;
+            document.getElementById('taskRowIndex').value = task.rowIndex;
+            document.getElementById('taskName').value = task.task;
+            document.getElementById('taskChannel').value = task.channel;
+            document.getElementById('taskCampaign').value = task.campaign;
+            document.getElementById('taskPriority').value = task.priority || 'P2';
+            document.getElementById('taskStatus').value = task.status;
+            document.getElementById('taskStartDate').value = task.startDate;
+            document.getElementById('taskEndDate').value = task.endDate;
+            document.getElementById('taskMilestone').value = task.milestone || '';
+            document.getElementById('taskNotes').value = task.notes || '';
+            
+            // Set owner checkboxes
+            document.querySelectorAll('.team-checkbox').forEach(cb => cb.classList.remove('selected'));
+            document.querySelectorAll('input[name="taskOwners"]').forEach(cb => cb.checked = false);
+            
+            if (task.owner) {
+                const owners = task.owner.split(',').map(o => o.trim());
+                owners.forEach(owner => {
+                    const checkbox = document.querySelector(`input[name="taskOwners"][value="${owner}"]`);
+                    if (checkbox) {
+                        checkbox.checked = true;
+                        checkbox.closest('.team-checkbox').classList.add('selected');
+                    }
+                });
+            }
+            
+            document.getElementById('taskModal').classList.add('active');
         }
 
         function closeTaskModal() {
             document.getElementById('taskModal').classList.remove('active');
-            document.getElementById('taskForm').reset();
+            editingTaskId = null;
         }
 
+        async function saveTask(event) {
+            event.preventDefault();
+            
+            // Get selected team members
+            const selectedOwners = [];
+            document.querySelectorAll('input[name="taskOwners"]:checked').forEach(cb => {
+                selectedOwners.push(cb.value);
+            });
+            
+            const taskData = {
+                channel: document.getElementById('taskChannel').value,
+                campaign: document.getElementById('taskCampaign').value,
+                task: document.getElementById('taskName').value,
+                priority: document.getElementById('taskPriority').value,
+                owner: selectedOwners.join(', '),
+                status: document.getElementById('taskStatus').value,
+                startDate: document.getElementById('taskStartDate').value,
+                endDate: document.getElementById('taskEndDate').value,
+                milestone: document.getElementById('taskMilestone').value,
+                deliverable: '',
+                notes: document.getElementById('taskNotes').value
+            };
+            
+            const rowIndex = document.getElementById('taskRowIndex').value;
+            
+            closeTaskModal();
+            
+            if (editingTaskId) {
+                // Update existing task
+                showToast('Updating task...');
+                taskData.rowIndex = parseInt(rowIndex);
+                const success = await updateTaskInSheet(taskData);
+                if (success) {
+                    showToast('Task updated successfully!');
+                } else {
+                    showToast('Error updating task', true);
+                }
+            } else {
+                // Add new task
+                showToast('Adding task...');
+                const success = await addTaskToSheet(taskData);
+                if (success) {
+                    showToast('Task added successfully!');
+                } else {
+                    showToast('Error adding task', true);
+                }
+            }
+            
+            // Refresh data
+            await loadTasksFromSheet();
+            renderTasks();
+            renderMilestones();
+            updateStats();
+        }
+
+        // ============================================
+        // DELETE FUNCTIONS
+        // ============================================
+        function openDeleteModal(taskId, rowIndex) {
+            deleteTaskId = taskId;
+            deleteTaskRowIndex = rowIndex;
+            const task = tasks.find(t => t.id === taskId);
+            document.getElementById('deleteMessage').textContent = 
+                `Are you sure you want to delete "${task ? task.task : 'this task'}"?`;
+            document.getElementById('deleteModal').classList.add('active');
+        }
+
+        function closeDeleteModal() {
+            document.getElementById('deleteModal').classList.remove('active');
+            deleteTaskId = null;
+            deleteTaskRowIndex = null;
+        }
+
+        async function confirmDelete() {
+            if (!deleteTaskRowIndex) return;
+            
+            closeDeleteModal();
+            showToast('Deleting task...');
+            
+            const success = await deleteTaskFromSheet(deleteTaskRowIndex);
+            
+            if (success) {
+                showToast('Task deleted successfully!');
+                await loadTasksFromSheet();
+                renderTasks();
+                renderMilestones();
+                updateStats();
+            } else {
+                showToast('Error deleting task', true);
+            }
+        }
+
+        // ============================================
+        // MILESTONE MODAL
+        // ============================================
         function openMilestoneModal() {
             document.getElementById('milestoneModal').classList.add('active');
         }
@@ -1462,72 +2071,45 @@
             document.getElementById('milestoneForm').reset();
         }
 
-        function closeTaskListModal() {
-            document.getElementById('taskListModal').classList.remove('active');
-        }
-
-        async function saveTask(event) {
+        async function saveMilestone(event) {
             event.preventDefault();
-
+            
             const taskData = {
-                channel: document.getElementById('taskChannel').value,
-                campaign: document.getElementById('taskCampaign').value,
-                task: document.getElementById('taskName').value,
-                priority: document.getElementById('taskPriority').value,
-                owner: document.getElementById('taskOwner').value,
-                status: document.getElementById('taskStatus').value,
-                startDate: document.getElementById('taskStartDate').value,
-                endDate: document.getElementById('taskEndDate').value,
-                notes: document.getElementById('taskNotes').value
-            };
-
-            // Add to local state immediately for responsiveness
-            const newTask = {
-                id: tasks.length + 1,
-                ...taskData
-            };
-            tasks.push(newTask);
-
-            // Update UI
-            renderTasks();
-            updateStats();
-            closeTaskModal();
-            showToast('Task added! Syncing to Google Sheets...');
-
-            // Sync to Google Sheets
-            const success = await addTaskToSheet(taskData);
-            if (success) {
-                showToast('Task saved to Google Sheets!');
-            } else {
-                showToast('Task added locally. Sheet sync may be delayed.', true);
-            }
-        }
-
-        function saveMilestone(event) {
-            event.preventDefault();
-
-            const milestone = {
-                id: milestones.length + 1,
-                name: document.getElementById('milestoneName').value,
-                date: document.getElementById('milestoneDate').value,
+                channel: '',
                 campaign: document.getElementById('milestoneCampaign').value,
-                description: document.getElementById('milestoneDescription').value
+                task: document.getElementById('milestoneName').value,
+                priority: 'P1',
+                owner: '',
+                status: 'Not started',
+                startDate: document.getElementById('milestoneDate').value,
+                endDate: document.getElementById('milestoneDate').value,
+                milestone: document.getElementById('milestoneName').value,
+                deliverable: '',
+                notes: document.getElementById('milestoneDescription').value
             };
-
-            milestones.push(milestone);
-            renderMilestones();
-            updateStats();
+            
             closeMilestoneModal();
-            showToast('Milestone added!');
+            showToast('Adding milestone...');
+            
+            const success = await addTaskToSheet(taskData);
+            
+            if (success) {
+                showToast('Milestone added!');
+                await loadTasksFromSheet();
+                renderMilestones();
+                updateStats();
+            } else {
+                showToast('Error adding milestone', true);
+            }
         }
 
         // ============================================
         // EXPORT FUNCTION
         // ============================================
         function exportTasks() {
-            const headers = ['Task', 'Channel', 'Campaign', 'Owner', 'Status', 'Priority', 'Start Date', 'End Date', 'Notes'];
+            const headers = ['Task', 'Channel', 'Campaign', 'Owner', 'Status', 'Priority', 'Start Date', 'End Date', 'Milestone', 'Notes'];
             const rows = tasks.map(t => [
-                t.task, t.channel, t.campaign, t.owner, t.status, t.priority, t.startDate, t.endDate, t.notes
+                t.task, t.channel, t.campaign, t.owner, t.status, t.priority, t.startDate, t.endDate, t.milestone, t.notes
             ]);
 
             let csv = headers.join(',') + '\n';
@@ -1565,6 +2147,8 @@
                 closeTaskModal();
                 closeMilestoneModal();
                 closeTaskListModal();
+                closeTeamModal();
+                closeDeleteModal();
             }
         });
     </script>
